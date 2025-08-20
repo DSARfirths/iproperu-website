@@ -1,0 +1,52 @@
+<div class="modal__overlay">
+    <div class="modal__content">
+        <button class="modal__close">×</button>
+
+        <div class="modal__view" id="initial-choice">
+            <h2>¿Cómo podemos ayudarte?</h2>
+            <p>Elige una opción para darte una atención más rápida.</p>
+            <div class="modal__options">
+                <a href="https://wa.me/51979012180?text=Hola%20iPro%20Perú,%20tengo%20una%20consulta%20rápida." target="_blank" class="button">
+                    <i class="fas fa-bolt"></i> Consulta Rápida (WhatsApp)
+                </a>
+                <button id="show-form-btn" class="button button--secondary">
+                    <i class="fas fa-tag"></i> Consulta Específica (Formulario)
+                </button>
+            </div>
+        </div>
+
+        <div class="modal__view" id="form-view" style="display: none;">
+            <h2>Consulta Específica</h2>
+            <p>Por favor, danos más detalles para poder ayudarte mejor.</p>
+            
+            <form action="https://formspree.io/f/xxxxxxxx" method="POST" class="modal__form">
+                <div class="form__group">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form__group">
+                    <label for="email">Email o Teléfono:</label>
+                    <input type="text" id="contact" name="contact" required>
+                </div>
+                <div class="form__group">
+                    <label for="inquiry-type">Tipo de Consulta:</label>
+                    <select id="inquiry-type" name="inquiry-type" required>
+                        <option value="Venta de Equipo">Venta de Equipo</option>
+                        <option value="Reparacion">Reparación</option>
+                        <option value="Accesorios">Accesorios</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form__group">
+                    <label for="message">Mensaje:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+                <div class="form__buttons">
+                    <button type="button" id="back-to-choice-btn" class="button button--secondary">← Volver</button>
+                    <button type="submit" class="button">Enviar Consulta</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
