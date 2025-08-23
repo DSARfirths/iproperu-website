@@ -760,6 +760,82 @@ section {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* --- PÁGINA NOSOTROS --- */
+
+/* Título de la página */
+.page__title-section {
+    text-align: center;
+    padding: 60px 0;
+}
+
+.page__title-container h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.page__title-container p {
+    font-size: 1.2rem;
+    color: var(--color-text-secondary);
+    max-width: 60ch;
+    margin: 0 auto;
+}
+
+/* Sección "Nuestra Historia" */
+.about__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.about__img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.about__content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.about__content p {
+    color: var(--color-text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* Sección "Misión y Visión" */
+.mv__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.mv__card {
+    background-color: var(--color-background);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.mv__card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.mv__card h3 {
+    font-size: 1.8rem;
+    color: var(--color-accent);
+    margin: 0 0 15px 0;
+}
+
+.mv__card p {
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+
 /* --- MEDIA QUERIES PARA RESPONSIVIDAD --- */
 @media (max-width: 768px) {
 
@@ -776,6 +852,20 @@ section {
     .trust-grid,
     .services-grid {
         grid-template-columns: 1fr;
+    }
+
+    .page__title-container h1 {
+        font-size: 2.5rem;
+    }
+
+    .about__grid,
+    .mv__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .about__img {
+        order: -1; /* Pone la imagen arriba en móvil */
     }
 
     .footer-grid {
@@ -869,14 +959,13 @@ section {
         z-index: 2000;
         padding: 20px;
         transform: translateX(100%);
-        /* Lo esconde fuera de la pantalla */
-        transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        /* Animación suave */
+        visibility: hidden;
+        transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.4s;
     }
 
     .mobile-nav-container.is-open {
         transform: translateX(0);
-        /* Lo muestra en pantalla */
+        visibility: visible;
     }
 
     .mobile-nav-header {
