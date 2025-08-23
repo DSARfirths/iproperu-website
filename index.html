@@ -1,30 +1,129 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iPro Perú - Venta y Reparación de Celulares en Piura</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="icon" href="assets/images/favicon.png" type="image/png">
-</head>
-<body>
+    <title>iPro Perú - Venta y Servicio Técnico de iPhone y Android</title>
 
-    <header class="header"></header>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <meta name="description"
+        content="Más de 10 años de experiencia en reparación y venta de equipos iPhone y Android. Cambio de batería en 20 minutos. Técnicos certificados.">
+</head>
+
+<body class="hidden">
+
+    <div id="header-placeholder"></div>
 
     <main>
-        <section class="hero">
-            <div class="hero__container container">
-                <h1 class="hero__title">TU FLOTA MÓVIL COMO NUEVA... O COMPLETAMENTE RENOVADA</h1>
-                <p class="hero__subtitle">Equipos iPhone y Android para empresas que exigen rendimiento.</p>
-                <a href="ventas.html" class="button">Ver equipos</a>
+        <section class="hero-section">
+            <div class="carousel-container">
+
+                <div class="carousel-slide active-slide"
+                    style="background-image: url('https://images.unsplash.com/photo-1604193329645-1313388703a8?q=80&w=2574&auto=format&fit=crop');">
+                    <div class="slide-content">
+                        <h1 class="slide-title">¿Pantalla rota? La dejamos como nueva.</h1>
+                        <p class="slide-description">Reparaciones con componentes de alta calidad y garantía.</p>
+                        <a href="servicios.html#pantallas" class="slide-cta-button">Reparar mi pantalla</a>
+                    </div>
+                </div>
+
+                <div class="carousel-slide"
+                    style="background-image: url('https://images.unsplash.com/photo-1623584983333-253457f583f7?q=80&w=2670&auto=format&fit=crop');">
+                    <div class="slide-content">
+                        <h1 class="slide-title">¿Tu batería ya no dura? Cámbiala en 20 minutos.</h1>
+                        <p class="slide-description">Recupera la autonomía de tu iPhone al instante.</p>
+                        <a href="servicios.html#baterias" class="slide-cta-button">Cambiar mi batería</a>
+                    </div>
+                </div>
+
+                <div class="carousel-slide"
+                    style="background-image: url('https://images.unsplash.com/photo-1592759963028-c51d65839589?q=80&w=2670&auto=format&fit=crop');">
+                    <div class="slide-content">
+                        <h1 class="slide-title">Estrena equipo nuevo con 1 año de garantía.</h1>
+                        <p class="slide-description">Los mejores modelos de iPhone y Android a tu alcance.</p>
+                        <a href="productos.html" class="slide-cta-button">Ver equipos</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="carousel-button prev">&#10094;</button>
+            <button class="carousel-button next">&#10095;</button>
+
+            <div class="carousel-dots">
+                <span class="dot active-dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
             </div>
         </section>
 
-        </main>
-        
-    <div id="modal-placeholder"></div>
-    <footer class="footer"></footer>
+        <section class="featured-services">
+            <div class="container">
+                <h2 class="section-title">Soluciones al instante para tus dispositivos</h2>
+                <div class="services-grid">
+                    <article class="service-card">
+                        <h3 class="service-title">Cambio de Batería</h3>
+                        <p class="service-description">Recupera tu autonomía. Para iPhone, ¡lista en 20 minutos!</p>
+                        <a href="servicios.html#baterias" class="service-link">Ver más →</a>
+                    </article>
+                    <article class="service-card">
+                        <h3 class="service-title">Cambio de Pantalla</h3>
+                        <p class="service-description">Visión perfecta con pantallas de la más alta calidad.</p>
+                        <a href="servicios.html#pantallas" class="service-link">Ver más →</a>
+                    </article>
+                    <article class="service-card">
+                        <h3 class="service-title">Problemas de Carga</h3>
+                        <p class="service-description">Solucionamos cualquier fallo en el puerto de carga o batería.</p>
+                        <a href="servicios.html#carga" class="service-link">Ver más →</a>
+                    </article>
+                    <article class="service-card">
+                        <h3 class="service-title">Cambio de Tapa</h3>
+                        <p class="service-description">Devolvemos la estética impecable y original a tu equipo.</p>
+                        <a href="servicios.html#tapas" class="service-link">Ver más →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-    <script src="assets/js/main.js"></script>
+        <section class="trust-section">
+            <div class="container">
+                <h2 class="section-title">Por qué confiar en iPro Perú</h2>
+                <div class="trust-grid">
+                    <div class="trust-item">
+                        <i class="fas fa-history trust-icon"></i>
+                        <h3 class="trust-title">10+ Años de Experiencia</h3>
+                        <p class="trust-description">Una década de soluciones y clientes satisfechos nos respaldan.</p>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-globe trust-icon"></i>
+                        <h3 class="trust-title">Capacitación Internacional</h3>
+                        <p class="trust-description">Nuestro personal se capacita constantemente en el extranjero.</p>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-bolt trust-icon"></i>
+                        <h3 class="trust-title">Rapidez y Eficiencia</h3>
+                        <p class="trust-description">Servicios express como el cambio de batería en 20 minutos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Perú,%20vengo%20de%20su%20sitio%20web%20y%20quisiera%20hacer%20una%20consulta."
+        class="whatsapp-flotante" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="/assets/js/partials-loader.js" defer></script>
+    <script src="/assets/js/main.js" defer></script>
+
 </body>
+
 </html>

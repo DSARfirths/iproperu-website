@@ -1,101 +1,127 @@
-document.addEventListener("DOMContentLoaded", function() {
-    loadPartial("header.header", "header.html", () => {
-        setActiveNavLink();
-        setupMobileMenu(); // <-- AÑADIMOS LA LLAMADA AQUÍ
-    });
-    loadPartial("footer.footer", "footer.html");
-    loadPartial("#modal-placeholder", "contact-modal.html", setupModalTriggers);
-});
+document.addEventListener('DOMContentLoaded', () => {
 
-function loadPartial(selector, url, callback) {
-    const element = document.querySelector(selector);
-    if (element) {
-        fetch(url)
-            .then(response => {
-                if (!response.ok) throw new Error(`Could not load ${url}`);
-                return response.text();
-            })
-            .then(data => {
-                element.innerHTML = data;
-                if (callback) callback();
-            })
-            .catch(error => console.error(error));
-    }
-}
+    // --- LÓGICA DEL CARRUSEL (SOLO PARA INDEX.HTML) ---
+    const carousel = document.querySelector('.carousel-container');
+    if (carousel) {
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+        const prevButton = document.querySelector('.carousel-button.prev');
+        const nextButton = document.querySelector('.carousel-button.next');
+        
+        let currentSlide = 0;
+        let slideInterval;
 
-function setActiveNavLink() {
-    const currentPage = window.location.pathname.split("/").pop() || "index.html";
-    const navLinks = document.querySelectorAll(".nav__link");
-    navLinks.forEach(link => {
-        if (link.tagName === 'A') {
-            const linkPage = link.getAttribute("href");
-            if (linkPage === currentPage) {
-                link.classList.add("active");
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active-slide'));
+            dots.forEach(dot => dot.classList.remove('active-dot'));
+
+            if (index >= slides.length) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = slides.length - 1;
             } else {
-                link.classList.remove("active");
+                currentSlide = index;
             }
+
+            slides[currentSlide].classList.add('active-slide');
+            dots[currentSlide].classList.add('active-dot');
         }
-    });
-}
 
-// ===== NUEVA FUNCIÓN PARA EL MENÚ MÓVIL =====
-function setupMobileMenu() {
-    const navMenu = document.getElementById('nav-menu'),
-          navToggle = document.getElementById('nav-toggle'),
-          navClose = document.getElementById('nav-close');
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
 
-    // Mostrar menú
-    if (navToggle) {
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.add('show-menu');
+        function startCarousel() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopCarousel() {
+            clearInterval(slideInterval);
+        }
+
+        nextButton.addEventListener('click', () => {
+            stopCarousel();
+            nextSlide();
+            startCarousel();
+        });
+
+        prevButton.addEventListener('click', () => {
+            stopCarousel();
+            showSlide(currentSlide - 1);
+            startCarousel();
+        });
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                stopCarousel();
+                showSlide(index);
+                startCarousel();
+            });
+        });
+
+        showSlide(currentSlide);
+        startCarousel();
+    }
+    // --- LÓGICA DEL ACORDEÓN DE SERVICIOS ---
+    const classifierCards = document.querySelectorAll('.classifier-card');
+    const detailsContainer = document.getElementById('service-details-container');
+
+    if (classifierCards.length > 0 && detailsContainer) {
+        classifierCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                const targetId = card.dataset.target.substring(1); // ej: "detail-pantallas" -> "template-pantallas"
+                const template = document.getElementById(`template-${targetId.split('-')[1]}`);
+                
+                if (template) {
+                    // Limpia el contenedor y añade el nuevo contenido
+                    detailsContainer.innerHTML = template.innerHTML;
+                    
+                    // Scroll suave hacia el contenido
+                    detailsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                    // Activa el listener para el nuevo botón del modal
+                    setupModalTriggers();
+                }
+            });
         });
     }
 
-    // Ocultar menú
-    if (navClose) {
-        navClose.addEventListener('click', () => {
-            navMenu.classList.remove('show-menu');
-        });
-    }
-}
-// ===============================================
-
-function setupModalTriggers() {
-    const modal = document.querySelector(".modal__overlay");
-    const closeModalBtn = document.querySelector(".modal__close");
-    const openModalBtn = document.getElementById("contact-modal-trigger");
-    const initialView = document.getElementById("initial-choice");
-    const formView = document.getElementById("form-view");
-    const showFormBtn = document.getElementById("show-form-btn");
-    const backToChoiceBtn = document.getElementById("back-to-choice-btn");
-
-    if (openModalBtn) {
-        openModalBtn.addEventListener("click", () => {
-            modal.classList.add("show-modal");
-            initialView.style.display = "block";
-            formView.style.display = "none";
-        });
-    }
-    
-    const closeModal = () => modal.classList.remove("show-modal");
-    if (closeModalBtn) closeModalBtn.addEventListener("click", closeModal);
+    // --- LÓGICA DEL MODAL DE WHATSAPP ---
+    const modal = document.getElementById('whatsapp-modal');
     if (modal) {
-        modal.addEventListener("click", (e) => {
-            if (e.target.classList.contains("modal__overlay")) closeModal();
+        const closeModalBtns = modal.querySelectorAll('.modal-close-btn, .modal-btn-secondary');
+        const continueBtn = document.getElementById('modal-continue-btn');
+
+        function showModal(whatsappLink) {
+            continueBtn.href = whatsappLink;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        closeModalBtns.forEach(btn => btn.addEventListener('click', closeModal));
+        
+        // Cierra el modal si se hace clic en el overlay
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
         });
-    }
-    
-    if (showFormBtn) {
-        showFormBtn.addEventListener("click", () => {
-            initialView.style.display = "none";
-            formView.style.display = "block";
-        });
+
+        // Esta función se llamará cada vez que se cargue nuevo contenido
+        function setupModalTriggers() {
+            const serviceCtaButtons = document.querySelectorAll('.cta-button-service');
+            serviceCtaButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const whatsappLink = button.dataset.whatsappLink;
+                    showModal(whatsappLink);
+                });
+            });
+        }
     }
 
-    if (backToChoiceBtn) {
-        backToChoiceBtn.addEventListener("click", () => {
-            formView.style.display = "none";
-            initialView.style.display = "block";
-        });
-    }
-}
+});

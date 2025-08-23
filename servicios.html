@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicio Técnico para iPhone y Android - iPro Perú</title>
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="description"
+        content="Solucionamos cualquier problema con tu iPhone o Android: pantallas, baterías, problemas de carga y más. Diagnóstico profesional y reparación garantizada.">
+</head>
+
+<body class="hidden">
+    <div id="header-placeholder"></div>
+
+    <main>
+        <section class="page-banner"
+            style="background-image: url('https://images.unsplash.com/photo-1576021182235-ea1d7b365858?q=80&w=2670&auto=format&fit=crop');">
+            <div class="container">
+                <h1 class="banner-title">SOLUCIONA TU PROBLEMA</h1>
+                <p class="banner-subtitle">Selecciona el tipo de problema que presenta tu equipo.</p>
+            </div>
+        </section>
+
+        <section class="visual-classifier-section">
+    <div class="container">
+        <div class="visual-classifier-grid">
+            <a href="#" class="classifier-card" data-target="#detail-pantallas">
+                <i class="fa-solid fa-mobile-screen"></i>
+                <h3>Pantallas</h3>
+            </a>
+            <a href="#" class="classifier-card" data-target="#detail-bateria">
+                <i class="fa-solid fa-battery-full"></i>
+                <h3>Batería</h3>
+            </a>
+            </div>
+    </div>
+</section>
+
+<section id="service-details-container" class="container"></section>
+
+<div id="whatsapp-modal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close-btn">&times;</button>
+        <h3>¡Estás a un paso de la solución!</h3>
+        <p>Para darte un precio exacto y agendar tu visita, necesitamos que nos contactes por WhatsApp. Nuestro equipo responde al instante.</p>
+        <div class="modal-actions">
+            <button class="modal-btn-secondary">Seguir viendo</button>
+            <a href="#" id="modal-continue-btn" target="_blank" class="modal-btn-primary">Continuar a WhatsApp</a>
+        </div>
+    </div>
+</div>
+
+<template id="template-pantallas">
+    <div class="service-detail-content">
+        
+        <img src="https://images.unsplash.com/photo-1604193329645-1313388703a8?q=80&w=2574&auto=format&fit=crop" alt="Reparación de pantalla profesional">
+
+        <div class="service-detail-text">
+            <h2>Problemas Comunes de Pantalla</h2>
+            <p>Selecciona tu problema específico o contáctanos si no estás seguro.</p>
+            
+            <div class="specific-problem">
+                <img src="https://images.unsplash.com/photo-1561736778-92e52a7769cb?q=80&w=2670&auto=format&fit=crop" alt="Teléfono con el cristal de la pantalla roto" class="specific-problem-img">
+                <div class="specific-problem-info">
+                    <h4>Cristal Roto (Táctil y visión OK)</h4>
+                    <p class="problem-desc">La solución más rápida si solo se dañó el vidrio exterior.</p>
+                    <div class="problem-actions">
+                        <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Perú,%20tengo%20el%20cristal%20de%20la%20pantalla%20roto.">Cotizar por WhatsApp</button>
+                        <a href="/servicios/pantalla-cristal-roto.html" class="link-saber-mas">Saber más...</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="specific-problem">
+                <img src="https://images.unsplash.com/photo-1550009158-94ae76252426?q=80&w=2574&auto=format&fit=crop" alt="Teléfono con líneas de colores en la pantalla" class="specific-problem-img">
+                <div class="specific-problem-info">
+                    <h4>Pantalla con Manchas o Líneas</h4>
+                    <p class="problem-desc">Cuando el daño afecta al panel LCD/OLED interno.</p>
+                     <div class="problem-actions">
+                        <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Perú,%20mi%20pantalla%20tiene%20manchas%20o%20líneas.">Cotizar por WhatsApp</button>
+                        <a href="/servicios/pantalla-manchas-lineas.html" class="link-saber-mas">Saber más...</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id="template-bateria">
+    <div class="service-detail-content">
+        <img src="https://images.unsplash.com/photo-1582237209798-5a639988a284?q=80&w=2670&auto=format&fit=crop" alt="Cambio de batería rápido">
+        <div class="service-detail-text">
+            <h2>Cambio de Batería Express</h2>
+            <p>¿La batería de tu iPhone ya no dura como antes? La cambiamos en 20 minutos con una batería nueva y certificada para que recuperes el 100% de autonomía.</p>
+            <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Perú,%20necesito%20cambiar%20la%20batería%20de%20mi%20equipo.">Quiero solucionar este problema</button>
+        </div>
+    </div>
+</template>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="/assets/js/partials-loader.js" defer></script>
+    <script src="/assets/js/main.js" defer></script>
+</body>
+
+</html>
