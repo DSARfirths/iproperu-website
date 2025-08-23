@@ -1,16 +1,29 @@
-/* Importamos la fuente desde Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+/* ==========================================================================
+   iPro Perú - Hoja de Estilos Principal
+   ========================================================================== */
 
-/* ======================= VARIABLES Y ESTILOS BASE ======================= */
+/* --- FUENTES Y VARIABLES GLOBALES --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
 :root {
     --color-background: #FFFFFF;
-    --color-text-primary: #1d1d1f; /* Gris oscuro de Apple */
-    --color-text-secondary: #515154;
-    --color-accent: #0071e3; /* Azul de Apple */
     --color-light-gray: #f5f5f7;
+    --color-text-primary: #1d1d1f;
+    --color-text-secondary: #515154;
+    --color-accent: #0071e3;
+    --color-accent-hover: #0077ed;
+    --color-whatsapp: #25D366;
     --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     --container-width: 1100px;
+    --border-radius: 20px;
+    --transition-speed: 0.3s;
+}
+
+/* --- ESTILOS BASE Y UTILIDADES --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 body {
@@ -18,14 +31,14 @@ body {
     background-color: var(--color-background);
     color: var(--color-text-primary);
     line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
     margin: 0;
+    -webkit-font-smoothing: antialiased;
+    transition: opacity var(--transition-speed) ease-in-out;
 }
 
-/* Previene el FOUC ocultando el body hasta que esté listo */
 body.hidden {
-    visibility: hidden;
     opacity: 0;
+    visibility: hidden;
 }
 
 .container {
@@ -34,8 +47,18 @@ body.hidden {
     padding: 0 20px;
 }
 
-/* ======================= HEADER / NAVEGACIÓN ======================= */
+section {
+    padding: 80px 0;
+}
 
+.section-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 60px 0;
+}
+
+/* --- HEADER Y NAVEGACIÓN --- */
 .main-header {
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
@@ -54,7 +77,7 @@ body.hidden {
 }
 
 .logo-img {
-    height: 30px; /* Ajusta según el tamaño de tu logo */
+    height: 30px;
 }
 
 .nav-links {
@@ -69,11 +92,11 @@ body.hidden {
     text-decoration: none;
     color: var(--color-text-primary);
     font-size: 16px;
-    font-weight: 400;
-    transition: color 0.3s ease;
+    transition: color var(--transition-speed);
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover,
+.nav-link.active {
     color: var(--color-accent);
 }
 
@@ -81,26 +104,29 @@ body.hidden {
     background-color: var(--color-accent);
     color: #FFFFFF;
     padding: 10px 20px;
-    border-radius: 980px; /* Píldora, estilo Apple */
+    border-radius: 980px;
     text-decoration: none;
     font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: all var(--transition-speed);
 }
 
 .main-cta-button:hover {
-    background-color: #0077ed; /* Un azul ligeramente más brillante */
-    transform: scale(1.05); /* Efecto de crecimiento sutil */
+    background-color: var(--color-accent-hover);
+    transform: scale(1.05);
 }
 
-/* ======================= HERO SECTION ======================= */
-
+/* --- HERO SECTION Y CARRUSEL (INDEX) --- */
 .hero-section {
     width: 100%;
-    height: 80vh; /* Ocupa el 80% de la altura de la pantalla */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    height: 75vh;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+}
+
+.carousel-container {
+    width: 100%;
+    height: 100%;
 }
 
 .carousel-slide {
@@ -108,25 +134,49 @@ body.hidden {
     height: 100%;
     background-size: cover;
     background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     color: #fff;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out;
+}
+
+.carousel-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    /* Overlay oscuro para legibilidad */
+}
+
+.carousel-slide.active-slide {
+    opacity: 1;
+    visibility: visible;
 }
 
 .slide-content {
+    position: relative;
     max-width: 700px;
 }
 
 .slide-title {
-    font-size: 3.5rem; /* 56px */
+    font-size: 3.5rem;
     font-weight: 700;
     margin: 0;
 }
 
 .slide-description {
-    font-size: 1.25rem; /* 20px */
-    font-weight: 300;
+    font-size: 1.25rem;
     margin: 15px 0 30px 0;
 }
 
@@ -138,7 +188,7 @@ body.hidden {
     text-decoration: none;
     font-weight: 600;
     font-size: 1rem;
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed);
 }
 
 .slide-cta-button:hover {
@@ -146,231 +196,18 @@ body.hidden {
     transform: scale(1.05);
 }
 
-/* ======================= ESTILOS GENERALES DE SECCIÓN ======================= */
-section {
-    padding: 100px 0;
-}
-
-.section-title {
-    font-size: 2.8rem; /* 45px */
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 60px;
-}
-/* ======================= SERVICIOS DESTACADOS ======================= */
-
-.featured-services {
-    background-color: var(--color-light-gray); /* Fondo gris claro para diferenciar la sección */
-}
-
-.services-grid {
-    display: grid;
-    /* Crea 4 columnas en desktop, 2 en tablet y 1 en móvil */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px; /* Espacio entre las tarjetas */
-}
-
-.service-card {
-    background-color: var(--color-background);
-    padding: 40px;
-    border-radius: 20px;
-    text-align: left;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.service-card:hover {
-    transform: translateY(-10px); /* Efecto de elevación al pasar el mouse */
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-}
-
-.service-title {
-    font-size: 1.5rem; /* 24px */
-    font-weight: 600;
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-.service-description {
-    color: var(--color-text-secondary);
-    font-size: 1rem; /* 16px */
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
-
-.service-link {
-    color: var(--color-accent);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-.service-link:hover {
-    text-decoration: underline;
-}
-
-/* ======================= SECCIÓN DE CONFIANZA ======================= */
-
-.trust-section {
-    /* Mantenemos el fondo blanco para alternar y crear contraste */
-    background-color: var(--color-background);
-}
-
-.trust-grid {
-    display: grid;
-    /* 3 columnas en desktop que se ajustan automáticamente en pantallas menores */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-}
-
-.trust-item {
-    text-align: center;
-    padding: 20px;
-}
-
-.trust-icon {
-    font-size: 2.5rem; /* Tamaño del icono */
-    color: var(--color-accent); /* Color del icono */
-    margin-bottom: 20px;
-    display: block; /* Para centrar el icono */
-    text-align: center;
-}
-
-.trust-title {
-    font-size: 1.5rem; /* 24px */
-    font-weight: 600;
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-.trust-description {
-    color: var(--color-text-secondary);
-    font-size: 1rem;
-    max-width: 35ch; /* Limita el ancho de línea para mejor legibilidad */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* ======================= FOOTER / PIE DE PÁGINA ======================= */
-
-.main-footer {
-    background-color: #f5f5f7; /* Gris claro consistente */
-    color: var(--color-text-secondary);
-    padding: 60px 0 30px 0;
-    font-size: 14px;
-}
-
-.footer-grid {
-    display: grid;
-    /* 3 columnas en desktop, que se apilarán en móvil */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    margin-bottom: 40px;
-}
-
-.footer-column {
-    padding: 0 15px;
-}
-
-.footer-heading {
-    font-size: 1rem; /* 16px */
-    font-weight: 600;
-    color: var(--color-text-primary);
-    margin-top: 0;
-    margin-bottom: 15px;
-}
-
-.footer-column p {
-    margin: 5px 0;
-}
-
-.footer-link, .social-link {
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    display: block;
-    margin-top: 10px;
-    transition: color 0.3s ease;
-}
-
-.footer-link:hover, .social-link:hover {
-    color: var(--color-accent);
-}
-
-.social-links a {
-    margin-right: 15px;
-    display: inline-block;
-}
-
-.footer-copyright {
-    text-align: center;
-    border-top: 1px solid #ddd;
-    padding-top: 30px;
-    font-size: 12px;
-}
-
-/* ======================= WIDGET FLOTANTE DE WHATSAPP ======================= */
-
-.whatsapp-flotante {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 30px;
-    right: 30px;
-    background-color: #25D366; /* Color oficial de WhatsApp */
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    z-index: 1000;
-    text-decoration: none; /* Aseguramos que no haya subrayado */
-    color: #fff; /* Color blanco para el icono */
-    font-size: 2rem; /* Ajustamos el tamaño del icono */
-}
-
-.whatsapp-flotante:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* ======================= HERO SECTION (ESTILOS AVANZADOS) ======================= */
-.hero-section {
-    position: relative; /* Necesario para posicionar los controles */
-    overflow: hidden; /* Oculta cualquier contenido que se salga */
-}
-
-.carousel-container {
-    width: 100%;
-    height: 100%;
-}
-
-.carousel-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
-}
-
-.carousel-slide.active-slide {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Estilo para los botones de flecha */
 .carousel-button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.3);
     color: white;
     border: none;
     font-size: 2rem;
     padding: 10px 15px;
     cursor: pointer;
     z-index: 10;
-    transition: background-color 0.3s ease;
+    transition: background-color var(--transition-speed);
 }
 
 .carousel-button:hover {
@@ -379,15 +216,12 @@ section {
 
 .carousel-button.prev {
     left: 20px;
-    border-radius: 5px 0 0 5px;
 }
 
 .carousel-button.next {
     right: 20px;
-    border-radius: 0 5px 5px 0;
 }
 
-/* Estilo para los puntos indicadores */
 .carousel-dots {
     position: absolute;
     bottom: 30px;
@@ -402,19 +236,91 @@ section {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.5);
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color var(--transition-speed);
 }
 
 .dot.active-dot {
-    background-color: rgba(255, 255, 255, 1);
+    background-color: #fff;
 }
 
-/* ======================= PÁGINA DE SERVICIOS (NUEVO DISEÑO) ======================= */
 
+/* --- SECCIONES DE CONTENIDO (INDEX) --- */
+.featured-services {
+    background-color: var(--color-light-gray);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: var(--color-background);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.service-title {
+    font-size: 1.5rem;
+    margin: 0 0 10px 0;
+}
+
+.service-description {
+    color: var(--color-text-secondary);
+    margin-bottom: 20px;
+}
+
+.service-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.service-link:hover {
+    text-decoration: underline;
+}
+
+.trust-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.trust-item {
+    text-align: center;
+}
+
+.trust-icon {
+    font-size: 2.5rem;
+    color: var(--color-accent);
+    margin-bottom: 20px;
+}
+
+.trust-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+}
+
+.trust-description {
+    color: var(--color-text-secondary);
+    max-width: 35ch;
+    margin: 0 auto;
+}
+
+
+/* --- PÁGINA DE SERVICIOS --- */
 .page-banner {
-    height: 45vh; /* Un poco más alto para dar más impacto */
+    height: 40vh;
     background-size: cover;
     background-position: center;
     display: flex;
@@ -422,26 +328,33 @@ section {
     justify-content: center;
     text-align: center;
     color: #fff;
-    padding: 0 20px;
+    padding: 20px;
+    position: relative;
+}
+
+.page-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.banner-title,
+.banner-subtitle {
+    position: relative;
+    z-index: 1;
 }
 
 .banner-title {
     font-size: 3.5rem;
-    font-weight: 700;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-    margin: 0;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .banner-subtitle {
     font-size: 1.25rem;
-    font-weight: 400;
-    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-    margin-top: 10px;
-    opacity: 0.9;
-}
-
-.visual-classifier-section {
-    padding: 80px 0;
 }
 
 .visual-classifier-grid {
@@ -452,21 +365,27 @@ section {
 
 .classifier-card {
     background-color: var(--color-light-gray);
-    border-radius: 20px;
+    border-radius: var(--border-radius);
     padding: 40px 20px;
     text-align: center;
     text-decoration: none;
     color: var(--color-text-primary);
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    border: 2px solid transparent;
+    transition: all var(--transition-speed);
 }
 
 .classifier-card:hover {
-    transform: translateY(-10px);
-    background-color: #e6e6e6;
+    transform: translateY(-5px);
+    background-color: #e9e9ed;
+}
+
+.classifier-card.active {
+    border-color: var(--color-accent);
+    background-color: #e0eaff;
 }
 
 .classifier-card i {
-    font-size: 3rem; /* Iconos grandes y visibles */
+    font-size: 3rem;
     color: var(--color-accent);
     margin-bottom: 20px;
 }
@@ -474,80 +393,133 @@ section {
 .classifier-card h3 {
     margin: 0;
     font-size: 1.25rem;
-    font-weight: 600;
 }
 
-/* ======================= DETALLES DE SERVICIO (ACORDEÓN) ======================= */
 #service-details-container {
-    padding-bottom: 80px;
+    padding-top: 0;
 }
 
 .service-detail-content {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 40px;
-    align-items: center;
     background-color: var(--color-light-gray);
-    border-radius: 20px;
+    border-radius: var(--border-radius);
     padding: 40px;
-    margin-top: 40px;
+    animation: fadeInContent 0.5s ease-out;
 }
 
-.service-detail-content img {
-    width: 100%;
+@keyframes fadeInContent {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.masonry-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* 1 columna por defecto en móvil */
+    gap: 30px;
+}
+
+.masonry-item {
+    background-color: #fff;
     border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: all var(--transition-speed);
+}
+
+.masonry-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.masonry-item img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    /* Proporción más alta, casi 2:3 */
     object-fit: cover;
+    /* La imagen cubre el espacio sin deformarse */
+    display: block;
+    border-bottom: 1px solid #eee;
 }
 
-.service-detail-text {
-    width: 100%; 
+.masonry-item-content {
+    padding: 20px;
 }
 
-.service-detail-text h2 {
-    font-size: 2rem;
-    margin-top: 0;
+.masonry-item h4 {
+    margin: 0 0 10px 0;
 }
 
-.service-detail-text p {
-    font-size: 1.1rem;
+/* --- Media Query para Escritorio (más de 768px) --- */
+@media (min-width: 769px) {
+    .masonry-grid {
+        /* AQUI LA MAGIA: 2 columnas en pantallas grandes */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.problem-desc {
+    font-size: 0.95rem;
     color: var(--color-text-secondary);
-    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.problem-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .cta-button-service {
     background-color: var(--color-accent);
     color: #fff;
-    padding: 15px 30px;
-    border-radius: 980px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
     border: none;
+    padding: 10px 20px;
+    border-radius: 980px;
     cursor: pointer;
-    margin-top: 20px;
-    transition: all 0.3s ease;
+    font-weight: 600;
+    transition: all var(--transition-speed);
 }
 
 .cta-button-service:hover {
+    background-color: var(--color-accent-hover);
     transform: scale(1.05);
-    background-color: #0077ed;
 }
 
-/* ======================= ESTILOS DEL MODAL ======================= */
+.link-saber-mas {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.link-saber-mas:hover {
+    text-decoration: underline;
+}
+
+/* --- MODAL DE WHATSAPP --- */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 2000;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: all var(--transition-speed);
 }
 
 .modal-overlay.active {
@@ -556,15 +528,15 @@ section {
 }
 
 .modal-content {
-    background-color: #fff;
+    background: #fff;
     padding: 40px;
-    border-radius: 20px;
+    border-radius: var(--border-radius);
     max-width: 500px;
     width: 90%;
     text-align: center;
     position: relative;
     transform: scale(0.9);
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-speed);
 }
 
 .modal-overlay.active .modal-content {
@@ -574,159 +546,402 @@ section {
 .modal-close-btn {
     position: absolute;
     top: 15px;
-    right: 15px;
+    right: 20px;
     background: none;
     border: none;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     cursor: pointer;
     color: #aaa;
 }
 
 .modal-content h3 {
-    font-size: 1.8rem;
     margin-top: 0;
+    font-size: 1.8rem;
 }
 
 .modal-actions {
-    margin-top: 30px;
     display: flex;
-    justify-content: center;
     gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
 }
 
-.modal-btn-primary, .modal-btn-secondary {
+.modal-btn-primary,
+.modal-btn-secondary {
     padding: 12px 25px;
     border-radius: 980px;
     text-decoration: none;
     font-weight: 600;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    transition: all var(--transition-speed);
 }
 
 .modal-btn-primary {
+    background-color: var(--color-whatsapp);
+    color: #fff;
+}
+
+.modal-btn-primary:hover {
+    opacity: 0.9;
+}
+
+.modal-btn-secondary {
+    background-color: #e8e8e8;
+    color: var(--color-text-primary);
+}
+
+.modal-btn-secondary:hover {
+    background-color: #ddd;
+}
+
+
+/* --- PÁGINA DE PRODUCTOS --- */
+.product-filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: var(--color-light-gray);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 980px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.filter-btn:hover {
+    background-color: #ddd;
+}
+
+.filter-btn.active {
     background-color: var(--color-accent);
     color: #fff;
 }
 
-.modal-btn-secondary {
-    background-color: #e0e0e0;
-    color: var(--color-text-secondary);
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
 }
 
-
-/* Estilos para la lista de problemas dentro del acordeón (CON IMAGEN) */
-.specific-problem {
-    background-color: #fff;
-    border-radius: 15px;
-    padding: 20px;
-    margin-top: 20px;
-    display: flex; 
-    align-items: center;
-    gap: 20px;
-    width: 100%; /* <-- Añadimos esto para asegurar que ocupe todo el espacio de .service-detail-text */
-    box-sizing: border-box; /* Buena práctica al usar width y padding juntos */
+.product-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    text-align: center;
+    transition: all var(--transition-speed);
 }
 
-.specific-problem-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px;
     object-fit: cover;
-    flex-shrink: 0; 
 }
 
-.specific-problem-info {
-    /* Esta es la regla definitiva que habíamos discutido. */
-    flex: 1; 
+.product-info {
+    padding: 25px;
 }
 
-.specific-problem h4 {
+.product-name {
+    font-size: 1.4rem;
     margin: 0 0 5px 0;
-    font-size: 1.2rem;
 }
 
-.problem-desc {
-    margin: 0 0 15px 0;
-    font-size: 0.95rem;
+.product-spec {
     color: var(--color-text-secondary);
-}
-
-.problem-actions {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap; /* Permite que los botones pasen a la siguiente línea en pantallas pequeñas */
-    gap: 15px;
-}
-
-.cta-button-service {
-    padding: 10px 20px;
     font-size: 0.9rem;
+    margin-bottom: 20px;
 }
 
-.link-saber-mas {
-    color: var(--color-accent);
+.product-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--color-whatsapp);
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 980px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
 }
 
-.link-saber-mas:hover {
-    text-decoration: underline;
+.product-cta:hover {
+    opacity: 0.9;
 }
 
-/* --- RESPONSIVIDAD PARA EL ACORDEÓN --- */
-@media (max-width: 768px) {
-    .specific-problem {
-        flex-direction: column; /* Apila la imagen sobre el texto */
-        align-items: flex-start; /* Alinea todo a la izquierda */
-        text-align: left;
-    }
-
-    .specific-problem-img {
-        width: 100%;
-        height: 150px; /* Hacemos la imagen más grande en móvil */
-    }
+/* --- FOOTER --- */
+.main-footer {
+    background-color: var(--color-light-gray);
+    color: var(--color-text-secondary);
+    padding: 60px 0 30px 0;
+    font-size: 14px;
 }
 
-/* ======================= PÁGINA DE SERVICIO ESPECÍFICO ======================= */
-.service-page-hero {
-    height: 50vh;
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-heading {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 15px 0;
+}
+
+.footer-column p {
+    margin: 5px 0;
+}
+
+.footer-link,
+.social-link {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    transition: color var(--transition-speed);
+}
+
+.footer-link:hover,
+.social-link:hover {
+    color: var(--color-accent);
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.footer-copyright {
+    text-align: center;
+    border-top: 1px solid #ddd;
+    padding-top: 30px;
+    font-size: 12px;
+}
+
+/* --- WHATSAPP FLOTANTE --- */
+.whatsapp-flotante {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--color-whatsapp);
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    text-align: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all var(--transition-speed);
+    z-index: 1000;
     color: #fff;
-    padding: 0 20px;
-    background-size: cover;
-    background-position: center;
-}
-.service-page-title { font-size: 3rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin: 0; }
-.service-page-subtitle { font-size: 1.2rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); margin-top: 10px; }
-
-.service-intro-section {
-    padding: 80px 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    align-items: center;
+    font-size: 2rem;
 }
 
-.service-image-column img { width: 100%; border-radius: 20px; }
-.service-content-column h2 { font-size: 2.5rem; margin-top: 0; }
-.service-content-column p { font-size: 1.1rem; line-height: 1.7; color: var(--color-text-secondary); }
+.whatsapp-flotante:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
 
-.service-process-section { background-color: var(--color-light-gray); padding: 80px 20px; }
-.video-container { width: 100%; max-width: 800px; margin: 0 auto; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-.video-container video, .video-container img { display: block; width: 100%; }
-
-.service-final-cta { text-align: center; padding: 80px 20px; }
-.service-final-cta h2 { font-size: 2.5rem; }
-.cta-button-service.large { padding: 20px 40px; font-size: 1.2rem; }
-.cta-button-service.large i { margin-right: 10px; }
-
-/* --- RESPONSIVIDAD PARA PÁGINA DE SERVICIO --- */
+/* --- MEDIA QUERIES PARA RESPONSIVIDAD --- */
 @media (max-width: 768px) {
-    .service-page-title { font-size: 2.2rem; }
-    .service-intro-section { grid-template-columns: 1fr; }
-    .service-content-column h2, .service-final-cta h2 { font-size: 2rem; }
+
+    .section-title,
+    .slide-title,
+    .banner-title {
+        font-size: 2.2rem;
+    }
+
+    .navigation-menu {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        gap: 20px;
+    }
+
+    .trust-grid,
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .social-links {
+        justify-content: center;
+        flex-direction: row;
+    }
+}
+
+/* --- ANIMACIÓN DE NAVEGACIÓN ESCRITORIO --- */
+.nav-links-desktop .nav-link {
+    position: relative;
+    /* Necesario para posicionar el efecto */
+    padding: 5px 0;
+}
+
+.hover-effect {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    /* Inicia en el centro */
+    transform: translateX(-50%);
+    /* Se centra perfectamente */
+    width: 0;
+    /* Inicia sin ancho */
+    height: 2px;
+    background-color: var(--color-accent);
+    transition: width 0.3s ease-in-out;
+    /* Animación suave del ancho */
+}
+
+/* Al pasar el mouse o si el enlace está activo, la línea crece al 100% */
+.nav-links-desktop .nav-link:hover .hover-effect,
+.nav-links-desktop .nav-link.active .hover-effect {
+    width: 100%;
+}
+
+/* --- ESTILOS BASE PARA MENÚ MÓVIL (Ocultos por defecto) --- */
+.hamburger-menu,
+.mobile-nav-container,
+.nav-overlay {
+    display: none;
+}
+
+/* --- MEDIA QUERY PARA MÓVILES Y TABLETS (hasta 850px) --- */
+@media (max-width: 850px) {
+
+    /* Ocultamos el menú de escritorio y el botón de cotizar */
+    .nav-links-desktop,
+    .desktop-cta {
+        display: none;
+    }
+
+    /* Mostramos el botón hamburguesa */
+    .hamburger-menu {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 1.8rem;
+        color: var(--color-text-primary);
+        cursor: pointer;
+    }
+
+    /* Contenedor del menú lateral */
+    .mobile-nav-container {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 85%;
+        max-width: 320px;
+        height: 100%;
+        background-color: var(--color-background);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        z-index: 2000;
+        padding: 20px;
+        transform: translateX(100%);
+        /* Lo esconde fuera de la pantalla */
+        transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        /* Animación suave */
+    }
+
+    .mobile-nav-container.is-open {
+        transform: translateX(0);
+        /* Lo muestra en pantalla */
+    }
+
+    .mobile-nav-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .mobile-menu-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    .close-menu {
+        background: none;
+        border: none;
+        font-size: 1.8rem;
+        color: var(--color-text-secondary);
+        cursor: pointer;
+    }
+
+    .nav-links-mobile {
+        list-style: none;
+        padding: 20px 0;
+        margin: 0;
+    }
+
+    .nav-links-mobile .nav-link {
+        display: block;
+        padding: 15px 10px;
+        font-size: 1.2rem;
+        color: var(--color-text-primary);
+        text-decoration: none;
+        border-radius: 8px;
+        transition: background-color 0.2s;
+    }
+
+    .nav-links-mobile .nav-link:hover {
+        background-color: var(--color-light-gray);
+    }
+
+    .mobile-cta {
+        margin-top: auto;
+        /* Empuja el botón al final */
+        text-align: center;
+    }
+
+    /* Overlay para oscurecer el fondo */
+    .nav-overlay {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1999;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s, visibility 0.4s;
+    }
+
+    .nav-overlay.is-open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Evita el scroll del body cuando el menú está abierto */
+    body.no-scroll {
+        overflow: hidden;
+    }
 }

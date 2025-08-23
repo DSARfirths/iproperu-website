@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicio Técnico para iPhone y Android - iPro Perú</title>
-
-    <link rel="stylesheet" href="/assets/css/style.css">
+    
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <meta name="description"
-        content="Solucionamos cualquier problema con tu iPhone o Android: pantallas, baterías, problemas de carga y más. Diagnóstico profesional y reparación garantizada.">
+    <meta name="description" content="Solucionamos cualquier problema con tu iPhone o Android: pantallas, baterías, problemas de carga y más. Diagnóstico profesional y reparación garantizada.">
 </head>
-
 <body class="hidden">
     <div id="header-placeholder"></div>
 
     <main>
-        <section class="page-banner"
-            style="background-image: url('https://images.unsplash.com/photo-1576021182235-ea1d7b365858?q=80&w=2670&auto=format&fit=crop');">
+        <section class="page-banner" style="background-image: url('https://images.unsplash.com/photo-1576021182235-ea1d7b365858?q=80&w=2670&auto=format&fit=crop');">
             <div class="container">
                 <h1 class="banner-title">SOLUCIONA TU PROBLEMA</h1>
                 <p class="banner-subtitle">Selecciona el tipo de problema que presenta tu equipo.</p>
@@ -25,86 +21,184 @@
         </section>
 
         <section class="visual-classifier-section">
-    <div class="container">
-        <div class="visual-classifier-grid">
-            <a href="#" class="classifier-card" data-target="#detail-pantallas">
-                <i class="fa-solid fa-mobile-screen"></i>
-                <h3>Pantallas</h3>
-            </a>
-            <a href="#" class="classifier-card" data-target="#detail-bateria">
-                <i class="fa-solid fa-battery-full"></i>
-                <h3>Batería</h3>
-            </a>
-            </div>
-    </div>
-</section>
-
-<section id="service-details-container" class="container"></section>
-
-<div id="whatsapp-modal" class="modal-overlay">
-    <div class="modal-content">
-        <button class="modal-close-btn">&times;</button>
-        <h3>¡Estás a un paso de la solución!</h3>
-        <p>Para darte un precio exacto y agendar tu visita, necesitamos que nos contactes por WhatsApp. Nuestro equipo responde al instante.</p>
-        <div class="modal-actions">
-            <button class="modal-btn-secondary">Seguir viendo</button>
-            <a href="#" id="modal-continue-btn" target="_blank" class="modal-btn-primary">Continuar a WhatsApp</a>
-        </div>
-    </div>
-</div>
-
-<template id="template-pantallas">
-    <div class="service-detail-content">
-        
-        <img src="https://images.unsplash.com/photo-1604193329645-1313388703a8?q=80&w=2574&auto=format&fit=crop" alt="Reparación de pantalla profesional">
-
-        <div class="service-detail-text">
-            <h2>Problemas Comunes de Pantalla</h2>
-            <p>Selecciona tu problema específico o contáctanos si no estás seguro.</p>
-            
-            <div class="specific-problem">
-                <img src="https://images.unsplash.com/photo-1561736778-92e52a7769cb?q=80&w=2670&auto=format&fit=crop" alt="Teléfono con el cristal de la pantalla roto" class="specific-problem-img">
-                <div class="specific-problem-info">
-                    <h4>Cristal Roto (Táctil y visión OK)</h4>
-                    <p class="problem-desc">La solución más rápida si solo se dañó el vidrio exterior.</p>
-                    <div class="problem-actions">
-                        <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Perú,%20tengo%20el%20cristal%20de%20la%20pantalla%20roto.">Cotizar por WhatsApp</button>
-                        <a href="/servicios/pantalla-cristal-roto.html" class="link-saber-mas">Saber más...</a>
-                    </div>
+            <div class="container">
+                <div class="visual-classifier-grid">
+                    <a href="#" class="classifier-card" data-target="#detail-pantallas"><i class="fa-solid fa-mobile-screen"></i><h3>Pantallas</h3></a>
+                    <a href="#" class="classifier-card" data-target="#detail-bateria"><i class="fa-solid fa-battery-full"></i><h3>Batería</h3></a>
+                    <a href="#" class="classifier-card" data-target="#detail-carga"><i class="fa-solid fa-plug-circle-bolt"></i><h3>Carga y Energía</h3></a>
+                    <a href="#" class="classifier-card" data-target="#detail-camaras"><i class="fa-solid fa-video"></i><h3>Cámara y Video</h3></a>
+                    <a href="#" class="classifier-card" data-target="#detail-audio"><i class="fa-solid fa-volume-high"></i><h3>Audio</h3></a>
+                    <a href="#" class="classifier-card" data-target="#detail-software"><i class="fa-solid fa-microchip"></i><h3>Software y Sistema</h3></a>
+                    <a href="#" class="classifier-card" data-target="#detail-conectividad"><i class="fa-solid fa-wifi"></i><h3>Conectividad</h3></a>
+                    <a href="#" class="classifier-card" data-target="#detail-general"><i class="fa-solid fa-screwdriver-wrench"></i><h3>Daño General</h3></a>
                 </div>
             </div>
+        </section>
 
-            <div class="specific-problem">
-                <img src="https://images.unsplash.com/photo-1550009158-94ae76252426?q=80&w=2574&auto=format&fit=crop" alt="Teléfono con líneas de colores en la pantalla" class="specific-problem-img">
-                <div class="specific-problem-info">
-                    <h4>Pantalla con Manchas o Líneas</h4>
-                    <p class="problem-desc">Cuando el daño afecta al panel LCD/OLED interno.</p>
-                     <div class="problem-actions">
-                        <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Perú,%20mi%20pantalla%20tiene%20manchas%20o%20líneas.">Cotizar por WhatsApp</button>
-                        <a href="/servicios/pantalla-manchas-lineas.html" class="link-saber-mas">Saber más...</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
-
-<template id="template-bateria">
-    <div class="service-detail-content">
-        <img src="https://images.unsplash.com/photo-1582237209798-5a639988a284?q=80&w=2670&auto=format&fit=crop" alt="Cambio de batería rápido">
-        <div class="service-detail-text">
-            <h2>Cambio de Batería Express</h2>
-            <p>¿La batería de tu iPhone ya no dura como antes? La cambiamos en 20 minutos con una batería nueva y certificada para que recuperes el 100% de autonomía.</p>
-            <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Perú,%20necesito%20cambiar%20la%20batería%20de%20mi%20equipo.">Quiero solucionar este problema</button>
-        </div>
-    </div>
-</template>
+        <section id="service-details-container" class="container"></section>
     </main>
+    
+    <div id="whatsapp-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h3>¡Estás a un paso de la solución!</h3>
+            <p>Para darte un precio exacto y agendar tu visita, necesitamos que nos contactes por WhatsApp. Nuestro equipo responde al instante.</p>
+            <div class="modal-actions">
+                <button class="modal-btn-secondary">Seguir viendo</button>
+                <a href="#" id="modal-continue-btn" target="_blank" class="modal-btn-primary">Continuar a WhatsApp</a>
+            </div>
+        </div>
+    </div>
 
     <div id="footer-placeholder"></div>
 
-    <script src="/assets/js/partials-loader.js" defer></script>
-    <script src="/assets/js/main.js" defer></script>
-</body>
+    <template id="template-pantallas">
+        <div class="service-detail-content">
+            <h2>Problemas Comunes de Pantalla</h2>
+            <p>Cada problema tiene una solución específica. Encuentra el tuyo a continuación.</p>
+            <div class="masonry-grid">
+                <div class="masonry-item">
+                    <img src="assets/images/Cristal-roto.jpeg" alt="Teléfono con el cristal de la pantalla roto">
+                    <div class="masonry-item-content">
+                        <h4>Cristal Roto (Táctil OK)</h4>
+                        <p class="problem-desc">La solución ideal y más económica si solo se dañó el vidrio exterior de tu equipo.</p>
+                        <div class="problem-actions">
+                            <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola,%20tengo%20el%20cristal%20de%20la%20pantalla%20roto.">Cotizar Ahora</button>
+                            <a href="/servicios/pantalla-cristal-roto.html" class="link-saber-mas">Saber más...</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="masonry-item">
+                    <img src="https://images.unsplash.com/photo-1550009158-94ae76252426?q=80&w=2574&auto=format&fit=crop" alt="Teléfono con líneas de colores en la pantalla">
+                    <div class="masonry-item-content">
+                        <h4>Pantalla con Manchas o Líneas</h4>
+                        <p class="problem-desc">Indica un daño en el panel LCD/OLED interno. Requiere un cambio de pantalla completo.</p>
+                        <div class="problem-actions">
+                            <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola,%20mi%20pantalla%20tiene%20manchas%20o%20líneas.">Cotizar Ahora</button>
+                            <a href="/servicios/pantalla-manchas-lineas.html" class="link-saber-mas">Saber más...</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="masonry-item">
+                    <img src="https://images.unsplash.com/photo-1628292433072-f673f3a5a4a4?q=80&w=2532&auto=format&fit=crop" alt="Mano tocando una pantalla de teléfono que no responde">
+                    <div class="masonry-item-content">
+                        <h4>Táctil no Funciona</h4>
+                        <p class="problem-desc">Si tu pantalla no responde o se presiona sola, solucionamos los fallos del digitalizador.</p>
+                        <div class="problem-actions">
+                            <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola,%20el%20táctil%20de%20mi%20pantalla%20no%20funciona.">Cotizar Ahora</button>
+                            <a href="/servicios/pantalla-tactil-falla.html" class="link-saber-mas">Saber más...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
 
+    <template id="template-bateria">
+        <div class="service-detail-content">
+            <h2>Problemas Comunes de Batería</h2>
+            <p>Recupera la autonomía y seguridad de tu equipo con nuestros servicios de batería.</p>
+            <div class="masonry-grid">
+                <div class="masonry-item">
+                    <img src="https://images.unsplash.com/photo-1610438235354-a1ae3a640134?q=80&w=2670&auto=format&fit=crop" alt="Teléfono conectado a un cargador">
+                    <div class="masonry-item-content">
+                        <h4>Se Descarga Rápido</h4>
+                        <p class="problem-desc">El problema más común. Reemplazamos tu batería agotada en minutos por una certificada.</p>
+                        <div class="problem-actions">
+                            <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola,%20la%20batería%20de%20mi%20equipo%20se%20descarga%20rápido.">Cotizar Ahora</button>
+                            <a href="/servicios/bateria-descarga-rapido.html" class="link-saber-mas">Saber más...</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="masonry-item">
+                    <img src="https://images.unsplash.com/photo-1596043513325-218d6e57513b?q=80&w=2670&auto=format&fit=crop" alt="Teléfono con la tapa trasera levantada mostrando una batería hinchada">
+                    <div class="masonry-item-content">
+                        <h4>Batería Hinchada</h4>
+                        <p class="problem-desc">Un riesgo de seguridad. Retiramos y reemplazamos la batería dañada de forma segura.</p>
+                        <div class="problem-actions">
+                            <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola,%20creo%20que%20la%20batería%20de%20mi%20equipo%20está%20hinchada.">Cotizar Ahora</button>
+                            <a href="/servicios/bateria-hinchada.html" class="link-saber-mas">Saber más...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="template-carga">
+        <div class="service-detail-content">
+            <h2>Problemas de Carga y Energía</h2>
+            <div class="masonry-grid">
+                <div class="masonry-item">
+                    <img src="https://images.unsplash.com/photo-1624558474937-3b04ca8b610a?q=80&auto=format&fit=crop" alt="Puerto de carga dañado">
+                    <div class="masonry-item-content">
+                        <h4>Cambio de Pin de Carga</h4>
+                        <p class="problem-desc">Si tu equipo no carga o tienes que mover el cable, esta es la solución.</p>
+                        <button class="cta-button-service" data-whatsapp-link="URL_WSP">Cotizar Ahora</button>
+                    </div>
+                </div>
+                <div class="masonry-item">
+                    <img src="https://images.unsplash.com/photo-1605334237189-8a3e792c3b28?q=80&auto=format&fit=crop" alt="Equipo que no enciende">
+                    <div class="masonry-item-content">
+                        <h4>Equipo no Enciende</h4>
+                        <p class="problem-desc">Diagnóstico profesional para fallas de encendido relacionadas a la placa o batería.</p>
+                        <button class="cta-button-service" data-whatsapp-link="URL_WSP">Diagnosticar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="template-camaras">
+    <div class="service-detail-content">
+        <h2>Problemas de Cámara y Video del Celular</h2>
+        <p>Solucionamos fallas de enfoque, imagen negra, cristal de lente roto y errores en la grabación de video.</p>
+        <div class="masonry-grid">
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1596594720934-5d519b6e8a8d?q=80&auto=format&fit=crop" alt="Lente de cámara de celular rota">
+                <div class="masonry-item-content">
+                    <h4>Cambio de Cristal de Lente</h4>
+                    <p class="problem-desc">Si se rompió solo el vidrio que protege tu lente, lo cambiamos para que tus fotos vuelvan a ser nítidas.</p>
+                    <button class="cta-button-service" data-whatsapp-link="URL_WSP">Cotizar Cristal</button>
+                </div>
+            </div>
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1616077168079-7e09a677fb2c?q=80&auto=format&fit=crop" alt="Cámara de celular con imagen en negro">
+                <div class="masonry-item-content">
+                    <h4>Falla de Cámara (Imagen Negra)</h4>
+                    <p class="problem-desc">Si la app de cámara muestra una imagen negra, no enfoca o se cierra, requiere un reemplazo del módulo.</p>
+                    <button class="cta-button-service" data-whatsapp-link="URL_WSP">Cotizar Módulo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+    
+    <template id="template-audio">
+        <div class="service-detail-content">
+            <h2>Problemas de Audio</h2>
+            <div class="masonry-grid">
+                <div class="masonry-item">
+                    <img src="https://images.unsplash.com/photo-1589254066205-d0886120234c?q=80&auto=format&fit=crop" alt="Auricular de llamadas de un celular">
+                    <div class="masonry-item-content">
+                        <h4>Cambio de Auricular Interno</h4>
+                        <p class="problem-desc">Si no escuchas bien durante las llamadas, limpiamos o reemplazamos el auricular superior.</p>
+                        <button class="cta-button-service" data-whatsapp-link="URL_WSP">Cotizar Reparación</button>
+                    </div>
+                </div>
+                <div class="masonry-item">
+                    <img src="https://images.unsplash.com/photo-1618384887924-c9989e15091a?q=80&auto=format&fit=crop" alt="Altavoz de un celular">
+                    <div class="masonry-item-content">
+                        <h4>Reparación de Altavoz</h4>
+                        <p class="problem-desc">Solucionamos problemas de sonido bajo, distorsionado o nulo al reproducir música o videos.</p>
+                        <button class="cta-button-service" data-whatsapp-link="URL_WSP">Cotizar Altavoz</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    
+    <script src="assets/js/partials-loader.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
+</body>
 </html>

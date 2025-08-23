@@ -1,87 +1,126 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- FUNCIÓN GENERAL PARA ACTIVAR ENLACE DE NAVEGACIÓN ---
+    // Esta función se llama desde partials-loader.js después de cargar el header
+    window.initializeActiveNavLinks = function () {
+        const navLinks = document.querySelectorAll('.nav-link');
+        const currentPage = window.location.pathname.split('/').pop(); // Obtiene 'index.html', 'servicios.html', etc.
 
-    // --- LÓGICA DEL CARRUSEL (SOLO PARA INDEX.HTML) ---
-    const carousel = document.querySelector('.carousel-container');
-    if (carousel) {
+        navLinks.forEach(link => {
+            const linkPage = link.getAttribute('href').split('/').pop();
+            if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
+                link.classList.add('active');
+            }
+        });
+    };
+
+    // --- LÓGICA DEL MENÚ MÓVIL ---
+    // Espera a que el header se cargue con partials-loader
+    function setupMobileMenu() {
+        const hamburgerBtn = document.querySelector('.hamburger-menu');
+        const mobileNav = document.querySelector('.mobile-nav-container');
+        const closeBtn = document.querySelector('.close-menu');
+        const overlay = document.querySelector('.nav-overlay');
+
+        // Comprobamos si los elementos existen para evitar errores
+        if (hamburgerBtn && mobileNav && closeBtn && overlay) {
+            const openMenu = () => {
+                mobileNav.classList.add('is-open');
+                overlay.classList.add('is-open');
+                document.body.classList.add('no-scroll');
+            };
+
+            const closeMenu = () => {
+                mobileNav.classList.remove('is-open');
+                overlay.classList.remove('is-open');
+                document.body.classList.remove('no-scroll');
+            };
+
+            hamburgerBtn.addEventListener('click', openMenu);
+            closeBtn.addEventListener('click', closeMenu);
+            overlay.addEventListener('click', closeMenu);
+        }
+    }
+
+    // Modificamos el loader para asegurarnos de que el menú se active
+    // después de que el header se haya cargado.
+    document.addEventListener("DOMContentLoaded", () => {
+        // Si ya existe un loader, nos "enganchamos" a su promesa
+        if (window.partialsLoaded) {
+            window.partialsLoaded.then(setupMobileMenu);
+        } else {
+            // Si no, esperamos un poco a que se cargue (solución de respaldo)
+            setTimeout(setupMobileMenu, 200);
+        }
+    });
+
+    // --- LÓGICA DEL CARRUSEL (Solo para index.html) ---
+    const carouselContainer = document.querySelector('.carousel-container');
+    if (carouselContainer) {
         const slides = document.querySelectorAll('.carousel-slide');
         const dots = document.querySelectorAll('.dot');
         const prevButton = document.querySelector('.carousel-button.prev');
         const nextButton = document.querySelector('.carousel-button.next');
-        
         let currentSlide = 0;
         let slideInterval;
 
         function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active-slide'));
-            dots.forEach(dot => dot.classList.remove('active-dot'));
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active-slide');
+                dots[i].classList.remove('active-dot');
+            });
 
-            if (index >= slides.length) {
-                currentSlide = 0;
-            } else if (index < 0) {
-                currentSlide = slides.length - 1;
-            } else {
-                currentSlide = index;
-            }
+            currentSlide = (index + slides.length) % slides.length; // Bucle infinito
 
             slides[currentSlide].classList.add('active-slide');
             dots[currentSlide].classList.add('active-dot');
         }
 
-        function nextSlide() {
+        function next() {
             showSlide(currentSlide + 1);
         }
 
+        function prev() {
+            showSlide(currentSlide - 1);
+        }
+
         function startCarousel() {
-            slideInterval = setInterval(nextSlide, 5000);
+            stopCarousel(); // Previene múltiples intervalos
+            slideInterval = setInterval(next, 5000);
         }
 
         function stopCarousel() {
             clearInterval(slideInterval);
         }
 
-        nextButton.addEventListener('click', () => {
-            stopCarousel();
-            nextSlide();
-            startCarousel();
-        });
-
-        prevButton.addEventListener('click', () => {
-            stopCarousel();
-            showSlide(currentSlide - 1);
-            startCarousel();
-        });
-
+        nextButton.addEventListener('click', () => { stopCarousel(); next(); startCarousel(); });
+        prevButton.addEventListener('click', () => { stopCarousel(); prev(); startCarousel(); });
         dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                stopCarousel();
-                showSlide(index);
-                startCarousel();
-            });
+            dot.addEventListener('click', () => { stopCarousel(); showSlide(index); startCarousel(); });
         });
 
-        showSlide(currentSlide);
         startCarousel();
     }
-    // --- LÓGICA DEL ACORDEÓN DE SERVICIOS ---
+
+    // --- LÓGICA DE SERVICIOS (Solo para servicios.html) ---
     const classifierCards = document.querySelectorAll('.classifier-card');
     const detailsContainer = document.getElementById('service-details-container');
-
     if (classifierCards.length > 0 && detailsContainer) {
         classifierCards.forEach(card => {
             card.addEventListener('click', (e) => {
                 e.preventDefault();
 
-                const targetId = card.dataset.target.substring(1); // ej: "detail-pantallas" -> "template-pantallas"
-                const template = document.getElementById(`template-${targetId.split('-')[1]}`);
-                
-                if (template) {
-                    // Limpia el contenedor y añade el nuevo contenido
-                    detailsContainer.innerHTML = template.innerHTML;
-                    
-                    // Scroll suave hacia el contenido
-                    detailsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Activar visualmente la tarjeta seleccionada
+                classifierCards.forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
 
-                    // Activa el listener para el nuevo botón del modal
+                const targetId = card.dataset.target.substring(1); // ej: "detail-pantallas" -> "template-pantallas"
+                const templateId = `template-${targetId.split('-')[1]}`;
+                const template = document.getElementById(templateId);
+
+                if (template) {
+                    detailsContainer.innerHTML = template.innerHTML;
+                    detailsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Es crucial volver a activar los listeners del modal para el nuevo contenido
                     setupModalTriggers();
                 }
             });
@@ -90,38 +129,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- LÓGICA DEL MODAL DE WHATSAPP ---
     const modal = document.getElementById('whatsapp-modal');
-    if (modal) {
-        const closeModalBtns = modal.querySelectorAll('.modal-close-btn, .modal-btn-secondary');
+    function setupModalTriggers() {
+        if (!modal) return;
+        const serviceCtaButtons = document.querySelectorAll('.cta-button-service');
         const continueBtn = document.getElementById('modal-continue-btn');
 
-        function showModal(whatsappLink) {
-            continueBtn.href = whatsappLink;
-            modal.classList.add('active');
-        }
-
-        function closeModal() {
-            modal.classList.remove('active');
-        }
-
-        closeModalBtns.forEach(btn => btn.addEventListener('click', closeModal));
-        
-        // Cierra el modal si se hace clic en el overlay
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-
-        // Esta función se llamará cada vez que se cargue nuevo contenido
-        function setupModalTriggers() {
-            const serviceCtaButtons = document.querySelectorAll('.cta-button-service');
-            serviceCtaButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const whatsappLink = button.dataset.whatsappLink;
-                    showModal(whatsappLink);
-                });
+        serviceCtaButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const whatsappLink = button.dataset.whatsappLink;
+                if (whatsappLink) {
+                    continueBtn.href = whatsappLink;
+                    modal.classList.add('active');
+                }
             });
-        }
+        });
+    }
+    // Cierra el modal
+    if (modal) {
+        const closeModalElements = modal.querySelectorAll('.modal-close-btn, .modal-btn-secondary, .modal-overlay');
+        closeModalElements.forEach(el => {
+            el.addEventListener('click', (e) => {
+                // Asegura que el clic en el contenido no cierre el modal
+                if (e.target === el) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
     }
 
+    // --- LÓGICA DE FILTROS DE PRODUCTOS (Solo para productos.html) ---
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const productCards = document.querySelectorAll('.product-card');
+    if (filterButtons.length > 0 && productCards.length > 0) {
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Estilo del botón activo
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filter = button.dataset.filter;
+
+                productCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
+
+    // Inicializar listeners en la carga inicial de la página
+    setupModalTriggers();
 });
