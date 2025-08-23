@@ -22,8 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Carga el header y el footer simultáneamente
     window.partialsLoaded = Promise.all([
-        loadPartial('header-placeholder', '/partials/header.html'),
-        loadPartial('footer-placeholder', '/partials/footer.html')
+        loadPartial('header-placeholder', 'partials/header.html'),
+        loadPartial('footer-placeholder', 'partials/footer.html')
     ]).then(() => {
         document.body.classList.remove('hidden');
         if (typeof initializeActiveNavLinks === 'function') {
