@@ -793,6 +793,16 @@ section {
     }
 }
 
+/* --- ESTILOS PARA EL CONTENEDOR DEL MENÚ DE ESCRITORIO --- */
+.nav-links-desktop {
+    list-style: none; /* Quita las viñetas (los puntos) */
+    margin: 0;
+    padding: 0;
+    display: flex;      /* ¡Esta es la línea clave que lo pone horizontal! */
+    align-items: center;/* Centra verticalmente los elementos */
+    gap: 30px;          /* Añade espacio entre cada opción del menú */
+}
+
 /* --- ANIMACIÓN DE NAVEGACIÓN ESCRITORIO --- */
 .nav-links-desktop .nav-link {
     position: relative;

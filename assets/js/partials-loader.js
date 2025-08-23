@@ -1,3 +1,5 @@
+// assets/js/partials-loader.js
+// Este script carga los componentes parciales (header y footer) en las páginas HTML
 document.addEventListener("DOMContentLoaded", () => {
     // Función para cargar un archivo HTML en un elemento específico
     const loadPartial = async (elementId, filePath) => {

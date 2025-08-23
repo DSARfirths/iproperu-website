@@ -1,3 +1,5 @@
+// --- main.js ---
+// Este script maneja la lógica principal de la página, incluyendo la activación de enlaces de
 document.addEventListener('DOMContentLoaded', () => {
     // --- FUNCIÓN GENERAL PARA ACTIVAR ENLACE DE NAVEGACIÓN ---
     // Esta función se llama desde partials-loader.js después de cargar el header
