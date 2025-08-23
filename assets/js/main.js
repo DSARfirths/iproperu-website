@@ -43,17 +43,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Modificamos el loader para asegurarnos de que el menú se active
-    // después de que el header se haya cargado.
-    document.addEventListener("DOMContentLoaded", () => {
-        // Si ya existe un loader, nos "enganchamos" a su promesa
-        if (window.partialsLoaded) {
-            window.partialsLoaded.then(setupMobileMenu);
-        } else {
-            // Si no, esperamos un poco a que se cargue (solución de respaldo)
-            setTimeout(setupMobileMenu, 200);
-        }
-    });
+    // --- INICIALIZACIÓN DEL MENÚ MÓVIL ---
+    // Nos aseguramos de que el menú se active después de que el header (parcial) se haya cargado.
+    if (window.partialsLoaded) {
+        // Si el loader de parciales ya existe, nos "enganchamos" a su promesa.
+        window.partialsLoaded.then(setupMobileMenu);
+    } else {
+        // Si no, es probable que no se estén usando parciales en esta página.
+        // Intentamos configurar el menú directamente, ya que el DOM está listo.
+        setupMobileMenu();
+    }
 
     // --- LÓGICA DEL CARRUSEL (Solo para index.html) ---
     const carouselContainer = document.querySelector('.carousel-container');
