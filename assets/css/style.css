@@ -946,7 +946,6 @@ section {
 
     /* Contenedor del menú lateral */
     .mobile-nav-container {
-        display: flex;
         flex-direction: column;
         position: fixed;
         top: 0;
@@ -964,6 +963,7 @@ section {
     }
 
     .mobile-nav-container.is-open {
+        display: flex;
         transform: translateX(0);
         visibility: visible;
     }

@@ -40,6 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburgerBtn.addEventListener('click', openMenu);
             closeBtn.addEventListener('click', closeMenu);
             overlay.addEventListener('click', closeMenu);
+
+            // Cierra el menú al hacer clic en un enlace
+            const mobileNavLinks = mobileNav.querySelectorAll('.nav-link');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
         }
     }
 
@@ -52,6 +58,30 @@ document.addEventListener('DOMContentLoaded', () => {
         // Si no, es probable que no se estén usando parciales en esta página.
         // Intentamos configurar el menú directamente, ya que el DOM está listo.
         setupMobileMenu();
+    }
+
+    // --- LÓGICA DE HEADER OCULTABLE AL HACER SCROLL ---
+    const header = document.querySelector('.main-header');
+    if (header) {
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            // No ocultar el header si el menú móvil está abierto
+            if (document.body.classList.contains('no-scroll')) {
+                return;
+            }
+
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY > lastScrollY && currentScrollY > header.offsetHeight) {
+                // Scrolling down -> Ocultar header
+                header.classList.add('header-hidden');
+            } else {
+                // Scrolling up -> Mostrar header
+                header.classList.remove('header-hidden');
+            }
+            lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
+        });
     }
 
     // --- LÓGICA DEL CARRUSEL (Solo para index.html) ---
