@@ -14,14 +14,68 @@
     <div id="header-placeholder"></div>
 
     <main>
-        <section class="page-banner" style="background-image: url('https://images.unsplash.com/photo-1592759963028-c51d65839589?q=80&w=2670&auto=format&fit=crop');">
-            <div class="container">
-                <h1 class="banner-title">Nuestros Equipos</h1>
-                <p class="banner-subtitle">Calidad y garantía en cada dispositivo.</p>
+        <section class="products-hero">
+            <div class="container products-hero__grid">
+                <div class="products-hero__content">
+                    <span class="products-hero__kicker">Catálogo iPro Perú</span>
+                    <h1>Equipos y accesorios premium listos para entregar hoy.</h1>
+                    <p>Desde el iPhone más deseado hasta el cargador ideal para tu día a día. Garantía escrita, activación personalizada y delivery en Piura.</p>
+                    <div class="products-hero__actions">
+                        <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20comprar%20un%20equipo." target="_blank" class="button button-primary"><i class="fab fa-whatsapp"></i> Hablar con ventas</a>
+                        <a href="#catalogo" class="button button-outline">Ver catálogo completo</a>
+                    </div>
+                    <ul class="products-hero__benefits">
+                        <li><i class="fa-solid fa-shield-check"></i> Garantía hasta por 12 meses.</li>
+                        <li><i class="fa-solid fa-box"></i> Entrega inmediata y opciones de delivery.</li>
+                        <li><i class="fa-solid fa-repeat"></i> Recibimos tu equipo en parte de pago.</li>
+                    </ul>
+                </div>
+                <div class="products-hero__media">
+                    <img src="assets/images/telefonos.png" alt="Colección de smartphones iPro Perú">
+                    <div class="products-hero__badge">
+                        <strong>Stock actualizado</strong>
+                        <span>Cada semana en showroom y online</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="products-catalog">
+        <section class="category-showcase">
+            <div class="container">
+                <div class="section-heading">
+                    <h2 class="section-title">Encuentra tu siguiente adquisición</h2>
+                    <p class="section-subtitle">Seleccionamos productos irresistibles para personas, empresas y creadores de contenido.</p>
+                </div>
+                <div class="category-grid">
+                    <article class="category-card">
+                        <img src="assets/images/iphone-promax-15.webp" alt="iPhone premium" class="category-card__media">
+                        <div class="category-card__body">
+                            <h3>iPhone nuevos y reacondicionados</h3>
+                            <p>Modelos desde el iPhone 11 hasta el último lanzamiento. Incluye migración de datos y accesorios de regalo.</p>
+                            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20informaci%C3%B3n%20de%20iPhone." target="_blank" class="service-link service-link--accent">Cotizar iPhone</a>
+                        </div>
+                    </article>
+                    <article class="category-card">
+                        <img src="assets/images/iphone-honor-presentación-hero.png" alt="Smartphones Android" class="category-card__media">
+                        <div class="category-card__body">
+                            <h3>Android gama alta y media</h3>
+                            <p>HONOR, Samsung, Xiaomi y más marcas listas para trabajar, crear contenido y jugar sin límites.</p>
+                            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20busco%20un%20Android%20potente." target="_blank" class="service-link service-link--accent">Solicitar asesor</a>
+                        </div>
+                    </article>
+                    <article class="category-card">
+                        <img src="assets/images/producto-supercargadores-portatiles.webp" alt="Accesorios tecnológicos" class="category-card__media">
+                        <div class="category-card__body">
+                            <h3>Accesorios que marcan la diferencia</h3>
+                            <p>Cargadores originales, powerbanks, audio temático y cases personalizados para proteger con estilo.</p>
+                            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20accesorios%20para%20mi%20equipo." target="_blank" class="service-link service-link--accent">Ver combos</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="products-catalog" id="catalogo">
             <div class="container">
                 <div class="product-filters">
                     <button class="filter-btn active" data-filter="all">Todos</button>
@@ -30,50 +84,98 @@
                     <button class="filter-btn" data-filter="accesorios">Accesorios</button>
                 </div>
 
-                <div class="products-grid">
+                <div class="products-grid catalog-grid">
                     <div class="product-card" data-category="iphone">
                         <img src="assets/images/iphone-promax-15.webp" alt="iPhone 15 Pro Max">
                         <div class="product-info">
                             <h3 class="product-name">iPhone 15 Pro Max</h3>
-                            <p class="product-spec">256GB - Titanio Natural</p>
-                            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola,%20quisiera%20consultar%20por%20el%20iPhone%2015%20Pro%20Max." target="_blank" class="product-cta">
-                                <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
+                            <p class="product-spec">256GB · Titanio Natural · Incluye AppleCare opcional</p>
+                            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20iPhone%2015%20Pro%20Max." target="_blank" class="product-cta">
+                                <i class="fab fa-whatsapp"></i> Separar unidad
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="iphone">
+                        <img src="assets/images/Producto-iphone-venta.webp" alt="iPhone 13">
+                        <div class="product-info">
+                            <h3 class="product-name">iPhone 13</h3>
+                            <p class="product-spec">128GB · Colores disponibles · Garantía 12 meses</p>
+                            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20saber%20del%20iPhone%2013." target="_blank" class="product-cta">
+                                <i class="fab fa-whatsapp"></i> Consultar stock
                             </a>
                         </div>
                     </div>
 
                     <div class="product-card" data-category="android">
-                        <img src="https://images.unsplash.com/photo-1698228308823-2748a1a36423?q=80&w=2564&auto=format&fit=crop" alt="Samsung Galaxy S24 Ultra">
+                        <img src="assets/images/iphone-honor-presentación-hero.png" alt="HONOR y otros Android">
                         <div class="product-info">
-                            <h3 class="product-name">Samsung Galaxy S24 Ultra</h3>
-                            <p class="product-spec">512GB - Negro Titanio</p>
-                            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola,%20quisiera%20consultar%20por%20el%20Samsung%20Galaxy%20S24%20Ultra." target="_blank" class="product-cta">
-                                <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
+                            <h3 class="product-name">HONOR Magic &amp; aliados</h3>
+                            <p class="product-spec">Pantallas OLED 120Hz · Cámaras Pro · Packs corporativos</p>
+                            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20un%20smartphone%20HONOR." target="_blank" class="product-cta">
+                                <i class="fab fa-whatsapp"></i> Hablar con asesor
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="accesorios" id="baterias">
+                        <img src="assets/images/bateria-iphone-voltrax.webp" alt="Batería Voltrax para iPhone">
+                        <div class="product-info">
+                            <h3 class="product-name">Baterías Voltrax y OEM</h3>
+                            <p class="product-spec">Compatibles con iPhone y Android · Instalación en laboratorio</p>
+                            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20una%20bater%C3%ADa%20Voltrax." target="_blank" class="product-cta">
+                                <i class="fab fa-whatsapp"></i> Cotizar instalación
                             </a>
                         </div>
                     </div>
 
                     <div class="product-card" data-category="accesorios">
-                        <img src="https://images.unsplash.com/photo-1550188047-2f3a74de59a8?q=80&w=2670&auto=format&fit=crop" alt="AirPods Pro">
+                        <img src="assets/images/producto-cargador-iphone (2).webp" alt="Cargador rápido para iPhone">
                         <div class="product-info">
-                            <h3 class="product-name">AirPods Pro 2da Gen</h3>
-                            <p class="product-spec">Estuche de carga MagSafe (USB-C)</p>
-                             <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola,%20quisiera%20consultar%20por%20los%20AirPods%20Pro." target="_blank" class="product-cta">
-                                <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
+                            <h3 class="product-name">Cargadores rápidos</h3>
+                            <p class="product-spec">USB-C, MagSafe y adaptadores de alta potencia certificados</p>
+                            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20busco%20cargadores%20r%C3%A1pidos." target="_blank" class="product-cta">
+                                <i class="fab fa-whatsapp"></i> Armar combo</a>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="accesorios">
+                        <img src="assets/images/Altavoces-de-sonido-tematica-transformes.webp" alt="Altavoces temáticos Transformers">
+                        <div class="product-info">
+                            <h3 class="product-name">Altavoces edición Transformers</h3>
+                            <p class="product-spec">Luces RGB · Bluetooth · Batería de larga duración</p>
+                            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20los%20altavoces%20tem%C3%A1ticos." target="_blank" class="product-cta">
+                                <i class="fab fa-whatsapp"></i> Solicitar demo
                             </a>
                         </div>
                     </div>
-                    
-                    <div class="product-card" data-category="iphone">
-                        <img src="https://images.unsplash.com/photo-1678922572539-7887e5a408b4?q=80&w=2574&auto=format&fit=crop" alt="iPhone 14">
+
+                    <div class="product-card" data-category="accesorios">
+                        <img src="assets/images/cajas-de-audifono-inalambricos-tematicos.webp" alt="Audífonos inalámbricos temáticos">
                         <div class="product-info">
-                            <h3 class="product-name">iPhone 14</h3>
-                            <p class="product-spec">128GB - Color Medianoche</p>
-                            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola,%20quisiera%20consultar%20por%20el%20iPhone%2014." target="_blank" class="product-cta">
-                                <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
+                            <h3 class="product-name">Audífonos inalámbricos temáticos</h3>
+                            <p class="product-spec">Estuches coleccionables · Cancelación de ruido · Ediciones limitadas</p>
+                            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20aud%C3%ADfonos%20tem%C3%A1ticos." target="_blank" class="product-cta">
+                                <i class="fab fa-whatsapp"></i> Pedir catálogo
                             </a>
                         </div>
                     </div>
+
+                    <div class="product-card" data-category="accesorios">
+                        <img src="assets/images/producto-cabeza-de-cargador.webp" alt="Cabezal de cargador premium">
+                        <div class="product-info">
+                            <h3 class="product-name">Adaptadores y hubs</h3>
+                            <p class="product-spec">Soluciones de carga múltiple para hogares, negocios y autos</p>
+                            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20necesito%20adaptadores." target="_blank" class="product-cta">
+                                <i class="fab fa-whatsapp"></i> Cotizar ahora
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="products-cta">
+                    <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20recibir%20la%20lista%20completa%20de%20productos." target="_blank" class="button button-primary">Quiero la lista completa</a>
+                    <a href="tel:+51979012180" class="button button-ghost"><i class="fa-solid fa-phone"></i> 979&nbsp;012&nbsp;180</a>
                 </div>
             </div>
         </section>

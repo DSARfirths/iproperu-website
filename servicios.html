@@ -13,10 +13,50 @@
     <div id="header-placeholder"></div>
 
     <main>
-        <section class="page-banner" style="background-image: url('https://images.unsplash.com/photo-1576021182235-ea1d7b365858?q=80&w=2670&auto=format&fit=crop');">
-            <div class="container">
-                <h1 class="banner-title">SOLUCIONA TU PROBLEMA</h1>
-                <p class="banner-subtitle">Selecciona el tipo de problema que presenta tu equipo.</p>
+        <section class="service-hero">
+            <div class="container service-hero__grid">
+                <div class="service-hero__content">
+                    <span class="service-hero__kicker">Servicio Técnico Premium</span>
+                    <h1>Solucionamos tu urgencia móvil con repuestos garantizados.</h1>
+                    <p>Diagnóstico inmediato, repuestos originales y seguimiento por WhatsApp desde que ingresas tu equipo. Somos el laboratorio especializado en iPhone y Android preferido por los piuranos.</p>
+                    <div class="service-hero__cta">
+                        <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20necesito%20soporte%20t%C3%A9cnico." target="_blank" class="button button-primary"><i class="fab fa-whatsapp"></i> Escríbenos ahora</a>
+                        <a href="#service-categories" class="button button-outline">Ver categorías de servicio</a>
+                    </div>
+                    <ul class="service-hero__highlights">
+                        <li><i class="fa-solid fa-stopwatch"></i> Reparaciones express desde 20 minutos.</li>
+                        <li><i class="fa-solid fa-shield"></i> Garantía escrita y factura electrónica.</li>
+                        <li><i class="fa-solid fa-video"></i> Evidencia en video del proceso de reparación.</li>
+                    </ul>
+                </div>
+                <div class="service-hero__media">
+                    <img src="assets/images/tecnico-reparando-telefono.png" alt="Técnico de iPro Perú reparando un teléfono">
+                    <div class="service-hero__badge">
+                        <strong>+25 000</strong>
+                        <span>Equipos intervenidos con éxito</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="service-intro" id="service-categories">
+            <div class="container service-intro__grid">
+                <div class="service-intro__copy">
+                    <h2>Todo lo que necesita tu smartphone, en un solo lugar.</h2>
+                    <p>Elige la categoría que describe tu falla, descubre qué incluye el servicio y agenda tu cita sin complicaciones. Si no encuentras tu caso, cuéntanos por WhatsApp y te guiamos.</p>
+                </div>
+                <div class="service-intro__guarantees">
+                    <div class="guarantee-card">
+                        <i class="fa-solid fa-user-check"></i>
+                        <h3>Técnicos certificados</h3>
+                        <p>Capacitación constante en laboratorios internacionales.</p>
+                    </div>
+                    <div class="guarantee-card">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                        <h3>Repuestos premium</h3>
+                        <p>Piezas OEM, originales y marcas aliadas como Voltrax.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -36,6 +76,54 @@
         </section>
 
         <section id="service-details-container" class="container"></section>
+
+        <section class="service-process">
+            <div class="container">
+                <div class="section-heading">
+                    <h2 class="section-title">Así cuidamos tu equipo en iPro Perú</h2>
+                    <p class="section-subtitle">Un flujo transparente, rápido y sin sorpresas en el presupuesto.</p>
+                </div>
+                <div class="process-grid">
+                    <div class="process-card">
+                        <span class="process-number">1</span>
+                        <h3>Diagnóstico inmediato</h3>
+                        <p>Revisamos tu equipo frente a ti y registramos el estado en video para mayor confianza.</p>
+                    </div>
+                    <div class="process-card">
+                        <span class="process-number">2</span>
+                        <h3>Cotización transparente</h3>
+                        <p>Te explicamos opciones de repuestos y tiempos estimados antes de iniciar la reparación.</p>
+                    </div>
+                    <div class="process-card">
+                        <span class="process-number">3</span>
+                        <h3>Reparación certificada</h3>
+                        <p>Trabajamos en laboratorio antiestático, con herramientas calibradas y repuestos premium.</p>
+                    </div>
+                    <div class="process-card">
+                        <span class="process-number">4</span>
+                        <h3>Entrega y garantía</h3>
+                        <p>Probamos contigo, entregamos garantía escrita y mantenemos soporte post servicio.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="service-trust">
+            <div class="container service-trust__grid">
+                <div class="service-trust__copy">
+                    <h2>Clientes felices que regresan y recomiendan.</h2>
+                    <p>Más del 70% de nuestras atenciones llegan por recomendación. Somos proveedores de empresas, emprendedores, creadores de contenido y familias que necesitan un aliado tecnológico permanente.</p>
+                    <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20programar%20un%20servicio%20t%C3%A9cnico." target="_blank" class="button button-primary">Quiero mi cotización</a>
+                </div>
+                <div class="service-trust__media">
+                    <img src="assets/images/Pantalla-reparada-hero.png" alt="Teléfono reparado por iPro Perú">
+                    <div class="service-trust__quote">
+                        “Los únicos que me dieron solución el mismo día y me mandaron videos del proceso. Totalmente recomendados.”
+                        <span>— José Luis A., gamer y creador de contenido</span>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     
     <div id="whatsapp-modal" class="modal-overlay">
@@ -53,39 +141,39 @@
     <div id="footer-placeholder"></div>
 
     <template id="template-pantallas">
-        <div class="service-detail-content">
-            <h2>Problemas Comunes de Pantalla</h2>
-            <p>Cada problema tiene una solución específica. Encuentra el tuyo a continuación.</p>
+        <div id="detail-pantallas" class="service-detail-content">
+            <h2>Problemas frecuentes de pantallas</h2>
+            <p>Trabajamos con pantallas OLED, LCD y originales según tu modelo. Si no ves tu caso escríbenos y te asesoramos.</p>
             <div class="masonry-grid">
                 <div class="masonry-item">
-                    <img src="assets/images/Cristal-roto.jpeg" alt="Teléfono con el cristal de la pantalla roto">
+                    <img src="assets/images/Pantalla-rota-antes-despues.webp" alt="Pantalla con cristal roto antes y después">
                     <div class="masonry-item-content">
-                        <h4>Cristal Roto (Táctil OK)</h4>
-                        <p class="problem-desc">La solución ideal y más económica si solo se dañó el vidrio exterior de tu equipo.</p>
+                        <h4>Vidrio roto, táctil funcional</h4>
+                        <p class="problem-desc">Reemplazamos solo el cristal para mantener tu panel original y ahorrar presupuesto.</p>
                         <div class="problem-actions">
-                            <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola,%20tengo%20el%20cristal%20de%20la%20pantalla%20roto.">Cotizar Ahora</button>
+                            <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20tengo%20el%20vidrio%20de%20mi%20pantalla%20roto.">Cotizar ahora</button>
                             <a href="/servicios/pantalla-cristal-roto.html" class="link-saber-mas">Saber más...</a>
                         </div>
                     </div>
                 </div>
                 <div class="masonry-item">
-                    <img src="https://images.unsplash.com/photo-1550009158-94ae76252426?q=80&w=2574&auto=format&fit=crop" alt="Teléfono con líneas de colores en la pantalla">
+                    <img src="assets/images/Pantalla-reparada-hero.png" alt="Pantalla con manchas reparada">
                     <div class="masonry-item-content">
-                        <h4>Pantalla con Manchas o Líneas</h4>
-                        <p class="problem-desc">Indica un daño en el panel LCD/OLED interno. Requiere un cambio de pantalla completo.</p>
+                        <h4>Manchas, líneas o imagen negra</h4>
+                        <p class="problem-desc">Cambio completo del módulo OLED/LCD con garantía de brillo y color.</p>
                         <div class="problem-actions">
-                            <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola,%20mi%20pantalla%20tiene%20manchas%20o%20líneas.">Cotizar Ahora</button>
+                            <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20mi%20pantalla%20tiene%20manchas%20o%20l%C3%ADneas.">Quiero mi cotización</button>
                             <a href="/servicios/pantalla-manchas-lineas.html" class="link-saber-mas">Saber más...</a>
                         </div>
                     </div>
                 </div>
                 <div class="masonry-item">
-                    <img src="https://images.unsplash.com/photo-1628292433072-f673f3a5a4a4?q=80&w=2532&auto=format&fit=crop" alt="Mano tocando una pantalla de teléfono que no responde">
+                    <img src="assets/images/tecnico-reparando-telefono.png" alt="Técnico reparando táctil de smartphone">
                     <div class="masonry-item-content">
-                        <h4>Táctil no Funciona</h4>
-                        <p class="problem-desc">Si tu pantalla no responde o se presiona sola, solucionamos los fallos del digitalizador.</p>
+                        <h4>Táctil sin respuesta</h4>
+                        <p class="problem-desc">Calibramos o reemplazamos el digitalizador para que vuelvas a deslizar sin esfuerzo.</p>
                         <div class="problem-actions">
-                            <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola,%20el%20táctil%20de%20mi%20pantalla%20no%20funciona.">Cotizar Ahora</button>
+                            <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20mi%20pantalla%20no%20responde.%20Ayuda.">Agendar revisión</button>
                             <a href="/servicios/pantalla-tactil-falla.html" class="link-saber-mas">Saber más...</a>
                         </div>
                     </div>
@@ -95,29 +183,27 @@
     </template>
 
     <template id="template-bateria">
-        <div class="service-detail-content">
-            <h2>Problemas Comunes de Batería</h2>
-            <p>Recupera la autonomía y seguridad de tu equipo con nuestros servicios de batería.</p>
+        <div id="detail-bateria" class="service-detail-content">
+            <h2>Recupera la energía de tu equipo</h2>
+            <p>Instalamos baterías originales y Voltrax con control de calidad. Incluye diagnóstico de carga y reporte de salud.</p>
             <div class="masonry-grid">
                 <div class="masonry-item">
-                    <img src="https://images.unsplash.com/photo-1610438235354-a1ae3a640134?q=80&w=2670&auto=format&fit=crop" alt="Teléfono conectado a un cargador">
+                    <img src="assets/images/bateria-iphone-voltrax.webp" alt="Batería Voltrax">
                     <div class="masonry-item-content">
-                        <h4>Se Descarga Rápido</h4>
-                        <p class="problem-desc">El problema más común. Reemplazamos tu batería agotada en minutos por una certificada.</p>
+                        <h4>Se descarga rápido</h4>
+                        <p class="problem-desc">Cambio express de batería con calibración y optimización de software.</p>
                         <div class="problem-actions">
-                            <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola,%20la%20batería%20de%20mi%20equipo%20se%20descarga%20rápido.">Cotizar Ahora</button>
-                            <a href="/servicios/bateria-descarga-rapido.html" class="link-saber-mas">Saber más...</a>
+                            <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20mi%20bater%C3%ADa%20se%20descarga%20muy%20r%C3%A1pido.">Cambiar batería</button>
                         </div>
                     </div>
                 </div>
                 <div class="masonry-item">
-                    <img src="https://images.unsplash.com/photo-1596043513325-218d6e57513b?q=80&w=2670&auto=format&fit=crop" alt="Teléfono con la tapa trasera levantada mostrando una batería hinchada">
+                    <img src="assets/images/Bateria-producto.webp" alt="Varias baterías en stock">
                     <div class="masonry-item-content">
-                        <h4>Batería Hinchada</h4>
-                        <p class="problem-desc">Un riesgo de seguridad. Retiramos y reemplazamos la batería dañada de forma segura.</p>
+                        <h4>Batería hinchada o dañada</h4>
+                        <p class="problem-desc">Retiro seguro, limpieza del compartimento y reemplazo con repuesto certificado.</p>
                         <div class="problem-actions">
-                            <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola,%20creo%20que%20la%20batería%20de%20mi%20equipo%20está%20hinchada.">Cotizar Ahora</button>
-                            <a href="/servicios/bateria-hinchada.html" class="link-saber-mas">Saber más...</a>
+                            <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20mi%20bater%C3%ADa%20est%C3%A1%20hinchada.">Necesito ayuda</button>
                         </div>
                     </div>
                 </div>
@@ -126,23 +212,24 @@
     </template>
 
     <template id="template-carga">
-        <div class="service-detail-content">
-            <h2>Problemas de Carga y Energía</h2>
+        <div id="detail-carga" class="service-detail-content">
+            <h2>Problemas de carga y energía</h2>
+            <p>Desde adaptadores certificados hasta reparaciones de placa. Evaluamos todo el circuito de energía.</p>
             <div class="masonry-grid">
                 <div class="masonry-item">
-                    <img src="https://images.unsplash.com/photo-1624558474937-3b04ca8b610a?q=80&auto=format&fit=crop" alt="Puerto de carga dañado">
+                    <img src="assets/images/producto-cargador-iphone (1).webp" alt="Cargador para iPhone en caja">
                     <div class="masonry-item-content">
-                        <h4>Cambio de Pin de Carga</h4>
-                        <p class="problem-desc">Si tu equipo no carga o tienes que mover el cable, esta es la solución.</p>
-                        <button class="cta-button-service" data-whatsapp-link="URL_WSP">Cotizar Ahora</button>
+                        <h4>Cambio de pin o puerto</h4>
+                        <p class="problem-desc">Si debes mover el cable o ya no carga, reemplazamos el conector con soldadura de precisión.</p>
+                        <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20mi%20puerto%20de%20carga%20fall%C3%B3.">Cotizar reparación</button>
                     </div>
                 </div>
                 <div class="masonry-item">
-                    <img src="https://images.unsplash.com/photo-1605334237189-8a3e792c3b28?q=80&auto=format&fit=crop" alt="Equipo que no enciende">
+                    <img src="assets/images/producto-cabeza-de-cargador.webp" alt="Cabezal de cargador premium">
                     <div class="masonry-item-content">
-                        <h4>Equipo no Enciende</h4>
-                        <p class="problem-desc">Diagnóstico profesional para fallas de encendido relacionadas a la placa o batería.</p>
-                        <button class="cta-button-service" data-whatsapp-link="URL_WSP">Diagnosticar</button>
+                        <h4>Equipos que no encienden</h4>
+                        <p class="problem-desc">Diagnóstico de placa y reemplazo de componentes dañados. Incluye reporte técnico.</p>
+                        <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20mi%20tel%C3%A9fono%20no%20enciende.">Solicitar diagnóstico</button>
                     </div>
                 </div>
             </div>
@@ -150,48 +237,124 @@
     </template>
 
     <template id="template-camaras">
-    <div class="service-detail-content">
-        <h2>Problemas de Cámara y Video del Celular</h2>
-        <p>Solucionamos fallas de enfoque, imagen negra, cristal de lente roto y errores en la grabación de video.</p>
-        <div class="masonry-grid">
-            <div class="masonry-item">
-                <img src="https://images.unsplash.com/photo-1596594720934-5d519b6e8a8d?q=80&auto=format&fit=crop" alt="Lente de cámara de celular rota">
-                <div class="masonry-item-content">
-                    <h4>Cambio de Cristal de Lente</h4>
-                    <p class="problem-desc">Si se rompió solo el vidrio que protege tu lente, lo cambiamos para que tus fotos vuelvan a ser nítidas.</p>
-                    <button class="cta-button-service" data-whatsapp-link="URL_WSP">Cotizar Cristal</button>
-                </div>
-            </div>
-            <div class="masonry-item">
-                <img src="https://images.unsplash.com/photo-1616077168079-7e09a677fb2c?q=80&auto=format&fit=crop" alt="Cámara de celular con imagen en negro">
-                <div class="masonry-item-content">
-                    <h4>Falla de Cámara (Imagen Negra)</h4>
-                    <p class="problem-desc">Si la app de cámara muestra una imagen negra, no enfoca o se cierra, requiere un reemplazo del módulo.</p>
-                    <button class="cta-button-service" data-whatsapp-link="URL_WSP">Cotizar Módulo</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
-    
-    <template id="template-audio">
-        <div class="service-detail-content">
-            <h2>Problemas de Audio</h2>
+        <div id="detail-camaras" class="service-detail-content">
+            <h2>Cámara y video impecables</h2>
+            <p>Reparamos tanto las cámaras frontales como traseras, calibrando el software para que vuelvas a crear contenido sin fallas.</p>
             <div class="masonry-grid">
                 <div class="masonry-item">
-                    <img src="https://images.unsplash.com/photo-1589254066205-d0886120234c?q=80&auto=format&fit=crop" alt="Auricular de llamadas de un celular">
+                    <img src="assets/images/cambio-de-camara.webp" alt="Módulo de cámaras de smartphone">
                     <div class="masonry-item-content">
-                        <h4>Cambio de Auricular Interno</h4>
-                        <p class="problem-desc">Si no escuchas bien durante las llamadas, limpiamos o reemplazamos el auricular superior.</p>
-                        <button class="cta-button-service" data-whatsapp-link="URL_WSP">Cotizar Reparación</button>
+                        <h4>Cristal protector roto</h4>
+                        <p class="problem-desc">Sustituimos el cristal sin afectar el módulo interno para mantener la nitidez.</p>
+                        <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20se%20rompi%C3%B3%20el%20cristal%20de%20mi%20c%C3%A1mara.">Cambiar cristal</button>
                     </div>
                 </div>
                 <div class="masonry-item">
-                    <img src="https://images.unsplash.com/photo-1618384887924-c9989e15091a?q=80&auto=format&fit=crop" alt="Altavoz de un celular">
+                    <img src="assets/images/Producto-iphone-venta.webp" alt="iPhone enfocado">
                     <div class="masonry-item-content">
-                        <h4>Reparación de Altavoz</h4>
-                        <p class="problem-desc">Solucionamos problemas de sonido bajo, distorsionado o nulo al reproducir música o videos.</p>
-                        <button class="cta-button-service" data-whatsapp-link="URL_WSP">Cotizar Altavoz</button>
+                        <h4>Imagen negra o fuera de foco</h4>
+                        <p class="problem-desc">Reemplazamos el módulo completo y recalibramos el sistema para restaurar el enfoque.</p>
+                        <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20mi%20c%C3%A1mara%20sale%20negra.">Cotizar módulo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="template-audio">
+        <div id="detail-audio" class="service-detail-content">
+            <h2>Servicios de audio</h2>
+            <p>Solucionamos fallas de altavoz, micrófonos y auriculares internos para que escuches cada detalle.</p>
+            <div class="masonry-grid">
+                <div class="masonry-item">
+                    <img src="assets/images/cajas-de-audifono-inalambricos-tematicos.webp" alt="Audífonos inalámbricos temáticos">
+                    <div class="masonry-item-content">
+                        <h4>Auricular interno bajo</h4>
+                        <p class="problem-desc">Limpieza profunda o reemplazo para que tus llamadas vuelvan a escucharse claras.</p>
+                        <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20no%20escucho%20mis%20llamadas.">Agendar servicio</button>
+                    </div>
+                </div>
+                <div class="masonry-item">
+                    <img src="assets/images/Altavoces-de-sonido-tematica-transformes.webp" alt="Altavoces temáticos">
+                    <div class="masonry-item-content">
+                        <h4>Altavoz distorsionado</h4>
+                        <p class="problem-desc">Reemplazo de parlantes y limpieza de mallas para recuperar el sonido original.</p>
+                        <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20mi%20altavoz%20suena%20mal.">Cotizar reparación</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="template-software">
+        <div id="detail-software" class="service-detail-content">
+            <h2>Software y sistema</h2>
+            <p>Optimizamos tu smartphone con actualizaciones, reinstalaciones limpias y configuración de seguridad.</p>
+            <div class="masonry-grid">
+                <div class="masonry-item">
+                    <img src="assets/images/telefonos.png" alt="Teléfonos actualizando software">
+                    <div class="masonry-item-content">
+                        <h4>Actualización y reinstalación</h4>
+                        <p class="problem-desc">Recuperamos el rendimiento corrigiendo errores de sistema, bloqueos y restableciendo apps.</p>
+                        <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20necesito%20ayuda%20con%20el%20software%20de%20mi%20equipo.">Agendar soporte</button>
+                    </div>
+                </div>
+                <div class="masonry-item">
+                    <img src="assets/images/iphone-promax-15.webp" alt="iPhone configurándose">
+                    <div class="masonry-item-content">
+                        <h4>Optimización para empresas</h4>
+                        <p class="problem-desc">Configuramos múltiples equipos, gestión de MDM, copias de seguridad y migración de datos.</p>
+                        <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20optimizar%20el%20software%20de%20mi%20equipo.">Solicitar propuesta</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="template-conectividad">
+        <div id="detail-conectividad" class="service-detail-content">
+            <h2>Reparación de conectividad</h2>
+            <p>¿Se va la señal o el WiFi? Revisamos antenas, flex y configuraciones para mantenerte siempre conectado.</p>
+            <div class="masonry-grid">
+                <div class="masonry-item">
+                    <img src="assets/images/iphone-honor-presentación-hero.png" alt="Smartphones con señal completa">
+                    <div class="masonry-item-content">
+                        <h4>Problemas de señal o datos</h4>
+                        <p class="problem-desc">Reemplazo de antenas, flex y módulos de comunicación. Incluye pruebas de campo.</p>
+                        <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20mi%20tel%C3%A9fono%20pierde%20se%C3%B1al.">Cotizar servicio</button>
+                    </div>
+                </div>
+                <div class="masonry-item">
+                    <img src="assets/images/producto-supercargadores-portatiles.webp" alt="Dispositivos conectados">
+                    <div class="masonry-item-content">
+                        <h4>Bluetooth &amp; WiFi inestable</h4>
+                        <p class="problem-desc">Limpieza, calibración y reemplazo de módulos de conectividad para accesorios y redes.</p>
+                        <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20mi%20bluetooth%20no%20funciona%20bien.">Revisar equipo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="template-general">
+        <div id="detail-general" class="service-detail-content">
+            <h2>Diagnóstico integral</h2>
+            <p>No estás seguro de la falla? Trae tu equipo y hacemos un chequeo completo con presupuesto al instante.</p>
+            <div class="masonry-grid">
+                <div class="masonry-item">
+                    <img src="assets/images/tecnico-reparando-telefono.png" alt="Diagnóstico de smartphone">
+                    <div class="masonry-item-content">
+                        <h4>Daño por líquido o golpe</h4>
+                        <p class="problem-desc">Rescate de placa, limpieza ultrasónica y reemplazo de componentes críticos.</p>
+                        <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20mi%20equipo%20tuvo%20un%20accidente.">Quiero diagnóstico</button>
+                    </div>
+                </div>
+                <div class="masonry-item">
+                    <img src="assets/images/personal.png" alt="Equipo técnico de iPro Perú">
+                    <div class="masonry-item-content">
+                        <h4>Planes para empresas</h4>
+                        <p class="problem-desc">Mantenimiento preventivo, reposición de flotas y soporte prioritario para tu negocio.</p>
+                        <button class="cta-button-service" data-whatsapp-link="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20un%20plan%20corporativo.">Solicitar asesor</button>
                     </div>
                 </div>
             </div>
