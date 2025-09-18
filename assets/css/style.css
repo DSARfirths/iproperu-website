@@ -1106,15 +1106,46 @@ section {
     transform: scale(1.05);
 }
 
-.link-saber-mas {
-    color: var(--color-accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
+.service-proof {
+    margin-top: 18px;
+    padding: 16px;
+    background: #f5f7ff;
+    border-radius: 18px;
+    display: grid;
+    gap: 14px;
 }
 
-.link-saber-mas:hover {
-    text-decoration: underline;
+.service-proof__media {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.service-proof__media img,
+.service-proof__media video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.service-proof__title {
+    margin: 0 0 8px 0;
+    font-size: 1rem;
+    color: var(--color-primary);
+}
+
+.service-proof__list {
+    padding-left: 20px;
+    margin: 0;
+    display: grid;
+    gap: 6px;
+    font-size: 0.95rem;
+    color: var(--color-body-text);
+}
+
+.service-proof__list li {
+    line-height: 1.4;
 }
 
 /* --- SERVICIOS DETALLE --- */
