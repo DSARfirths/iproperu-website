@@ -881,18 +881,17 @@ section {
 
 /* --- ESTILOS PARA EL CONTENEDOR DEL MENÚ DE ESCRITORIO --- */
 .nav-links-desktop {
-    list-style: none; /* Quita las viñetas (los puntos) */
+    list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;      /* ¡Esta es la línea clave que lo pone horizontal! */
-    align-items: center;/* Centra verticalmente los elementos */
-    gap: 30px;          /* Añade espacio entre cada opción del menú */
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
 /* --- ANIMACIÓN DE NAVEGACIÓN ESCRITORIO --- */
 .nav-links-desktop .nav-link {
     position: relative;
-    /* Necesario para posicionar el efecto */
     padding: 5px 0;
 }
 
