@@ -6,6 +6,78 @@ const FILTERS_CONTAINER_SELECTOR = '.product-filters';
 let currentFilter = 'all';
 let filtersInitialized = false;
 
+const deriveCategoriesFromProducts = (products) => {
+    const uniqueCategories = [];
+    const seen = new Set();
+
+    products.forEach(product => {
+        const category = product.category;
+        if (category && !seen.has(category)) {
+            seen.add(category);
+            uniqueCategories.push(category);
+        }
+    });
+
+    return ['all', ...uniqueCategories];
+};
+
+const CATEGORY_LABEL_OVERRIDES = {
+    iphone: 'iPhone'
+};
+
+const formatCategoryLabel = (category) => {
+    if (category === 'all') {
+        return 'Todos';
+    }
+
+    if (CATEGORY_LABEL_OVERRIDES[category]) {
+        return CATEGORY_LABEL_OVERRIDES[category];
+    }
+
+    return category
+        .split(/[-_\s]+/)
+        .filter(Boolean)
+        .map(segment => segment.charAt(0).toUpperCase() + segment.slice(1))
+        .join(' ');
+};
+
+const renderFilterButtons = (filtersContainer, categories, activeFilter) => {
+    if (!filtersContainer) {
+        return;
+    }
+
+    filtersContainer.innerHTML = '';
+
+    const fragment = document.createDocumentFragment();
+
+    categories.forEach(category => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'filter-btn';
+        button.dataset.filter = category;
+        button.textContent = formatCategoryLabel(category);
+
+        if (category === activeFilter) {
+            button.classList.add('active');
+        }
+
+        fragment.appendChild(button);
+    });
+
+    filtersContainer.appendChild(fragment);
+};
+
+const synchronizeActiveFilter = (filtersContainer) => {
+    if (!filtersContainer) {
+        return;
+    }
+
+    const buttons = filtersContainer.querySelectorAll('.filter-btn');
+    buttons.forEach(button => {
+        button.classList.toggle('active', button.dataset.filter === currentFilter);
+    });
+};
+
 const pauseVideoElement = (video) => {
     if (video && !video.paused) {
         video.pause();
@@ -31,11 +103,6 @@ function setupFilters(filtersContainer, productsContainer) {
         return;
     }
 
-    const activeButton = filtersContainer.querySelector('.filter-btn.active');
-    if (activeButton && activeButton.dataset.filter) {
-        currentFilter = activeButton.dataset.filter;
-    }
-
     filtersContainer.addEventListener('click', (event) => {
         const button = event.target instanceof Element ? event.target.closest('.filter-btn') : null;
         if (!button) {
@@ -49,15 +116,13 @@ function setupFilters(filtersContainer, productsContainer) {
             currentFilter = nextFilter;
         }
 
-        const buttons = filtersContainer.querySelectorAll('.filter-btn');
-        buttons.forEach(btn => {
-            btn.classList.toggle('active', btn === button);
-        });
+        synchronizeActiveFilter(filtersContainer);
 
         applyFilter(currentFilter, productsContainer);
     });
 
     filtersInitialized = true;
+    synchronizeActiveFilter(filtersContainer);
     applyFilter(currentFilter, productsContainer);
 }
 
@@ -219,11 +284,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const filtersContainer = document.querySelector(FILTERS_CONTAINER_SELECTOR);
+
     if (filtersContainer) {
-        const activeButton = filtersContainer.querySelector('.filter-btn.active');
-        if (activeButton && activeButton.dataset.filter) {
-            currentFilter = activeButton.dataset.filter;
+        const categories = deriveCategoriesFromProducts(productsData);
+        const hasActiveClass = filtersContainer.querySelector('.filter-btn.active');
+
+        if (hasActiveClass) {
+            const activeFilter = hasActiveClass.dataset.filter;
+            if (activeFilter) {
+                currentFilter = activeFilter;
+            }
         }
+
+        renderFilterButtons(filtersContainer, categories, currentFilter);
+        synchronizeActiveFilter(filtersContainer);
     }
 
     renderProducts(productsData, { container: productsContainer });
