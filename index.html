@@ -30,91 +30,236 @@
             <div class="carousel-container">
 
                 <div class="carousel-slide active-slide"
-                    style="background-image: url('assets/images/Pantalla-reparada-hero.png');">
+                    style="background-image: url('assets/images/tecnico-reparando-telefono.png');">
                     <div class="slide-content">
-                        <h1 class="slide-title">¿Pantalla rota? La dejamos como nueva.</h1>
-                        <p class="slide-description">Reparaciones con componentes de alta calidad y garantía.</p>
-                        <a href="servicios.html#pantallas" class="slide-cta-button">Reparar mi pantalla</a>
+                        <span class="slide-kicker">Laboratorio express en Piura</span>
+                        <h1 class="slide-title">Reparamos tu smartphone y lo devolvemos a la vida el mismo día.</h1>
+                        <p class="slide-description">Diagnóstico profesional al ingreso, repuestos premium certificados y garantía real por
+                            escrito.</p>
+                        <div class="slide-actions">
+                            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20agendar%20una%20reparaci%C3%B3n." target="_blank"
+                                class="slide-cta-button">Quiero mi cotización</a>
+                            <a href="servicios.html" class="slide-secondary">Ver servicios</a>
+                        </div>
                     </div>
                 </div>
 
                 <div class="carousel-slide"
-                    style="background-image: url('assets/images/Batería-reparada-hero.png');">
+                    style="background-image: url('assets/images/Batería-hero-cambiandose.png');">
                     <div class="slide-content">
-                        <h1 class="slide-title">¿Tu batería ya no dura? Cámbiala en 20 minutos.</h1>
-                        <p class="slide-description">Recupera la autonomía de tu iPhone al instante.</p>
-                        <a href="servicios.html#baterias" class="slide-cta-button">Cambiar mi batería</a>
+                        <span class="slide-kicker">Cambio de batería en 20 minutos</span>
+                        <h2 class="slide-title">Energía nueva para tu iPhone sin perder tus datos.</h2>
+                        <p class="slide-description">Baterías Voltrax y originales de fábrica, instaladas por técnicos certificados.</p>
+                        <div class="slide-actions">
+                            <a href="servicios.html#detail-bateria" class="slide-cta-button">Agenda tu cambio</a>
+                            <a href="productos.html#baterias" class="slide-secondary">Ver baterías</a>
+                        </div>
                     </div>
                 </div>
 
                 <div class="carousel-slide"
                     style="background-image: url('assets/images/iphone-honor-presentación-hero.png');">
                     <div class="slide-content">
-                        <h1 class="slide-title">Estrena equipo nuevo con 1 año de garantía.</h1>
-                        <p class="slide-description">Los mejores modelos de iPhone y Android a tu alcance.</p>
-                        <a href="productos.html" class="slide-cta-button">Ver equipos</a>
+                        <span class="slide-kicker">Zona de estrenos</span>
+                        <h2 class="slide-title">Teléfonos y accesorios listos para entregar hoy mismo.</h2>
+                        <p class="slide-description">Equipos nuevos y reacondicionados con garantía hasta por 12 meses y planes de
+                            equipamiento corporativo.</p>
+                        <div class="slide-actions">
+                            <a href="productos.html" class="slide-cta-button">Descubrir catálogo</a>
+                            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20comprar%20un%20equipo." target="_blank"
+                                class="slide-secondary">Solicitar asesor</a>
+                        </div>
                     </div>
                 </div>
 
             </div>
 
-            <button class="carousel-button prev">&#10094;</button>
-            <button class="carousel-button next">&#10095;</button>
+            <button class="carousel-button prev" aria-label="Anterior">&#10094;</button>
+            <button class="carousel-button next" aria-label="Siguiente">&#10095;</button>
 
-            <div class="carousel-dots">
-                <span class="dot active-dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+            <div class="carousel-dots" role="tablist">
+                <span class="dot active-dot" role="tab" aria-label="Reparaciones express"></span>
+                <span class="dot" role="tab" aria-label="Cambio de batería"></span>
+                <span class="dot" role="tab" aria-label="Catálogo de productos"></span>
+            </div>
+        </section>
+
+        <section class="impact-bar">
+            <div class="container impact-grid">
+                <div class="impact-item">
+                    <strong>+10 años</strong>
+                    <span>especialistas certificados Apple &amp; Android</span>
+                </div>
+                <div class="impact-item">
+                    <strong>+25 000</strong>
+                    <span>equipos reparados con garantía</span>
+                </div>
+                <div class="impact-item">
+                    <strong>Servicio express</strong>
+                    <span>Cambio de batería en 20 minutos</span>
+                </div>
+                <div class="impact-item">
+                    <strong>Catálogo premium</strong>
+                    <span>Teléfonos, cargadores y audio listos para entrega</span>
+                </div>
             </div>
         </section>
 
         <section class="featured-services">
             <div class="container">
-                <h2 class="section-title">Soluciones al instante para tus dispositivos</h2>
+                <div class="section-heading">
+                    <h2 class="section-title">Soluciones que enamoran a tus clientes y a tu bolsillo</h2>
+                    <p class="section-subtitle">Reparamos, potenciamos y equipamos con repuestos premium y soporte humano real.</p>
+                </div>
                 <div class="services-grid">
                     <article class="service-card">
-                        <h3 class="service-title">Cambio de Batería</h3>
-                        <p class="service-description">Recupera tu autonomía. Para iPhone, ¡lista en 20 minutos!</p>
-                        <a href="servicios.html#baterias" class="service-link">Ver más →</a>
+                        <img src="assets/images/Pantalla-rota-antes-despues.webp" alt="Cambio de pantalla antes y después"
+                            class="service-card__media">
+                        <div class="service-card__body">
+                            <h3 class="service-title">Pantallas perfectas</h3>
+                            <p class="service-description">Antes y después en cuestión de horas. Pantallas OLED y LCD con brillo original y
+                                garantía certificada.</p>
+                            <div class="service-actions">
+                                <a href="servicios.html#detail-pantallas" class="service-link">Ver opciones</a>
+                                <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20necesito%20cambiar%20la%20pantalla%20de%20mi%20tel%C3%A9fono." target="_blank"
+                                    class="service-link service-link--accent"><i class="fab fa-whatsapp"></i> Cotizar ya</a>
+                            </div>
+                        </div>
                     </article>
                     <article class="service-card">
-                        <h3 class="service-title">Cambio de Pantalla</h3>
-                        <p class="service-description">Visión perfecta con pantallas de la más alta calidad.</p>
-                        <a href="servicios.html#pantallas" class="service-link">Ver más →</a>
+                        <img src="assets/images/bateria-iphone-voltrax.webp" alt="Batería Voltrax de reemplazo"
+                            class="service-card__media">
+                        <div class="service-card__body">
+                            <h3 class="service-title">Baterías con sello premium</h3>
+                            <p class="service-description">Voltrax, originales y OEM. Instalada en 20 minutos mientras disfrutas de nuestra zona de
+                                clientes.</p>
+                            <div class="service-actions">
+                                <a href="servicios.html#detail-bateria" class="service-link">Ver servicios</a>
+                                <a href="productos.html#baterias" class="service-link service-link--accent">Ver catálogo</a>
+                            </div>
+                        </div>
                     </article>
                     <article class="service-card">
-                        <h3 class="service-title">Problemas de Carga</h3>
-                        <p class="service-description">Solucionamos cualquier fallo en el puerto de carga o batería.</p>
-                        <a href="servicios.html#carga" class="service-link">Ver más →</a>
-                    </article>
-                    <article class="service-card">
-                        <h3 class="service-title">Cambio de Tapa</h3>
-                        <p class="service-description">Devolvemos la estética impecable y original a tu equipo.</p>
-                        <a href="servicios.html#tapas" class="service-link">Ver más →</a>
+                        <img src="assets/images/cambio-de-camara.webp" alt="Repuesto de cámara"
+                            class="service-card__media">
+                        <div class="service-card__body">
+                            <h3 class="service-title">Foto y video como nuevos</h3>
+                            <p class="service-description">Reemplazo de módulos, cristal de lente, limpieza profesional y recalibración de software.</p>
+                            <div class="service-actions">
+                                <a href="servicios.html#detail-camaras" class="service-link">Más detalles</a>
+                                <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20reparar%20la%20c%C3%A1mara%20de%20mi%20equipo." target="_blank"
+                                    class="service-link service-link--accent"><i class="fab fa-whatsapp"></i> Agenda ahora</a>
+                            </div>
+                        </div>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section class="trust-section">
+        <section class="experience-strip">
+            <div class="container experience-grid">
+                <div class="experience-copy">
+                    <h2>Tu smartphone listo hoy mismo.</h2>
+                    <p>Ingresas tu equipo, hacemos diagnóstico inmediato, autorizas la reparación y recibes evidencia del proceso en
+                        tiempo real. Así convertimos emergencias en reseñas de 5 estrellas.</p>
+                    <ul class="experience-list">
+                        <li><i class="fa-solid fa-shield-heart"></i> Piezas con garantía real y sello de autenticidad.</li>
+                        <li><i class="fa-solid fa-camera"></i> Registro fotográfico antes, durante y después de la intervención.</li>
+                        <li><i class="fa-solid fa-message-dots"></i> WhatsApp activo para dudas, seguimiento y soporte post venta.</li>
+                    </ul>
+                    <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20agendar%20una%20revisi%C3%B3n%20para%20mi%20equipo." target="_blank"
+                        class="button button-primary">Quiero reservar mi turno</a>
+                </div>
+                <div class="experience-media">
+                    <img src="assets/images/telefonos-en-exhibicion.png" alt="Vitrina de teléfonos en iPro Perú">
+                    <div class="experience-badge">
+                        <strong>Listo en 90'</strong>
+                        <span>para reparaciones avanzadas</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="products-highlight" id="destacados">
             <div class="container">
-                <h2 class="section-title">Por qué confiar en iProPerú</h2>
-                <div class="trust-grid">
-                    <div class="trust-item">
-                        <i class="fas fa-history trust-icon"></i>
-                        <h3 class="trust-title">10+ Años de Experiencia</h3>
-                        <p class="trust-description">Una década de soluciones y clientes satisfechos nos respaldan.</p>
+                <div class="section-heading">
+                    <h2 class="section-title">Equipos y accesorios que tus manos quieren tocar</h2>
+                    <p class="section-subtitle">Stock confirmado cada semana, entregas inmediatas y asesoría para elegir el match perfecto.</p>
+                </div>
+                <div class="products-grid">
+                    <article class="product-highlight-card">
+                        <img src="assets/images/iphone-promax-15.webp" alt="iPhone 15 Pro Max" class="product-highlight-card__media">
+                        <div class="product-highlight-card__body">
+                            <span class="product-tag">iPhone</span>
+                            <h3>iPhone 15 Pro Max</h3>
+                            <p>Titanio Natural. Incluye protector premium, activación y migración de datos.</p>
+                            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20iPhone%2015%20Pro%20Max." target="_blank"
+                                class="button button-outline"><i class="fab fa-whatsapp"></i> Apartar unidad</a>
+                        </div>
+                    </article>
+                    <article class="product-highlight-card">
+                        <img src="assets/images/producto-supercargadores-portatiles.webp" alt="Powerbanks portátiles"
+                            class="product-highlight-card__media">
+                        <div class="product-highlight-card__body">
+                            <span class="product-tag">Powerbanks</span>
+                            <h3>Super cargadores portátiles</h3>
+                            <p>Powerbanks iluminados de alta capacidad para tus viajes, eventos y jornadas largas.</p>
+                            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20powerbanks%20para%20mi%20equipo." target="_blank"
+                                class="button button-outline"><i class="fab fa-whatsapp"></i> Cotizar packs</a>
+                        </div>
+                    </article>
+                    <article class="product-highlight-card">
+                        <img src="assets/images/Altavoces-de-sonido-tematica-transformes.webp" alt="Altavoces temáticos"
+                            class="product-highlight-card__media">
+                        <div class="product-highlight-card__body">
+                            <span class="product-tag">Audio</span>
+                            <h3>Altavoces edición Transformers</h3>
+                            <p>Luces RGB, bajos potentes y diseño coleccionable. Perfectos para stands y regalos corporativos.</p>
+                            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20los%20altavoces%20tem%C3%A1ticos." target="_blank"
+                                class="button button-outline"><i class="fab fa-whatsapp"></i> Pedir demostración</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="products-cta">
+                    <a href="productos.html" class="button button-primary">Ver todo el catálogo</a>
+                    <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20asesor%C3%ADa%20para%20comprar." target="_blank"
+                        class="button button-ghost">Hablar con un asesor</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="before-after">
+            <div class="container before-after__grid">
+                <div class="before-after__media">
+                    <img src="assets/images/Pantalla-rota-antes-despues.webp" alt="Antes y después de reparación">
+                </div>
+                <div class="before-after__content">
+                    <h2>Antes y después que inspiran confianza</h2>
+                    <p>Nuestros clientes llegan recomendados porque viven la experiencia iPro Perú: comunicación clara, entregas puntuales y
+                        resultados que enamoran.</p>
+                    <div class="testimonial">
+                        <blockquote>
+                            “Llevé mi iPhone con la pantalla destruida y en dos horas parecía recién comprado. Además enviaron fotos del proceso. ¡Servicio 10/10!”
+                        </blockquote>
+                        <cite>— Katherine M., emprendedora digital</cite>
                     </div>
-                    <div class="trust-item">
-                        <i class="fas fa-globe trust-icon"></i>
-                        <h3 class="trust-title">Capacitación Internacional</h3>
-                        <p class="trust-description">Nuestro personal se capacita constantemente en el extranjero.</p>
-                    </div>
-                    <div class="trust-item">
-                        <i class="fas fa-bolt trust-icon"></i>
-                        <h3 class="trust-title">Rapidez y Eficiencia</h3>
-                        <p class="trust-description">Servicios express como el cambio de batería en 20 minutos.</p>
-                    </div>
+                    <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20agendar%20una%20visita." target="_blank"
+                        class="button button-primary">Agendar visita al local</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-final">
+            <div class="container cta-final__content">
+                <div class="cta-final__text">
+                    <h2>¿Listo para enamorarte de tu equipo otra vez?</h2>
+                    <p>Escríbenos por WhatsApp, agenda tu cita y vive el servicio técnico número uno de Piura.</p>
+                </div>
+                <div class="cta-final__actions">
+                    <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20cotizar%20una%20reparaci%C3%B3n." target="_blank"
+                        class="button button-primary"><i class="fab fa-whatsapp"></i> Escribir ahora</a>
+                    <a href="tel:+51979012180" class="button button-ghost"><i class="fa-solid fa-phone"></i> Llamar al
+                        979&nbsp;012&nbsp;180</a>
                 </div>
             </div>
         </section>

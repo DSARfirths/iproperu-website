@@ -136,26 +136,54 @@ document.addEventListener('DOMContentLoaded', () => {
     const classifierCards = document.querySelectorAll('.classifier-card');
     const detailsContainer = document.getElementById('service-details-container');
     if (classifierCards.length > 0 && detailsContainer) {
+        const renderServiceDetail = (card, { scroll = true } = {}) => {
+            // Activar visualmente la tarjeta seleccionada
+            classifierCards.forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+
+            const targetId = card.dataset.target.substring(1); // ej: "detail-pantallas"
+            const templateKey = targetId.replace('detail-', '');
+            const templateId = `template-${templateKey}`;
+            const template = document.getElementById(templateId);
+
+            if (template) {
+                detailsContainer.innerHTML = template.innerHTML;
+                const anchor = detailsContainer.querySelector(`#${targetId}`);
+                if (scroll) {
+                    (anchor || detailsContainer).scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                // Es crucial volver a activar los listeners del modal para el nuevo contenido
+                setupModalTriggers();
+            }
+        };
+
         classifierCards.forEach(card => {
             card.addEventListener('click', (e) => {
                 e.preventDefault();
-
-                // Activar visualmente la tarjeta seleccionada
-                classifierCards.forEach(c => c.classList.remove('active'));
-                card.classList.add('active');
-
-                const targetId = card.dataset.target.substring(1); // ej: "detail-pantallas" -> "template-pantallas"
-                const templateId = `template-${targetId.split('-')[1]}`;
-                const template = document.getElementById(templateId);
-
-                if (template) {
-                    detailsContainer.innerHTML = template.innerHTML;
-                    detailsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    // Es crucial volver a activar los listeners del modal para el nuevo contenido
-                    setupModalTriggers();
-                }
+                renderServiceDetail(card);
             });
         });
+
+        const activateFromHash = () => {
+            const hash = window.location.hash;
+            if (!hash) {
+                return;
+            }
+
+            const matchingCard = Array.from(classifierCards).find(card => card.dataset.target === hash);
+            if (matchingCard) {
+                renderServiceDetail(matchingCard);
+            }
+        };
+
+        // Activar la categoría correspondiente si llegamos con hash en la URL
+        activateFromHash();
+        window.addEventListener('hashchange', activateFromHash);
+
+        // Mostrar una categoría por defecto si no existe hash en la URL
+        if (!window.location.hash && classifierCards[0]) {
+            renderServiceDetail(classifierCards[0], { scroll: false });
+        }
     }
 
     // --- LÓGICA DEL MODAL DE WHATSAPP ---
@@ -166,18 +194,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const continueBtn = document.getElementById('modal-continue-btn');
 
         serviceCtaButtons.forEach(button => {
+            if (button.dataset.modalBound === 'true') {
+                return;
+            }
+
             button.addEventListener('click', () => {
                 const whatsappLink = button.dataset.whatsappLink;
                 if (whatsappLink) {
-                    continueBtn.href = whatsappLink;
+                    if (continueBtn) {
+                        continueBtn.href = whatsappLink;
+                    }
                     modal.classList.add('active');
                 }
             });
+
+            button.dataset.modalBound = 'true';
         });
     }
     // Cierra el modal
     if (modal) {
-        const closeModalElements = modal.querySelectorAll('.modal-close-btn, .modal-btn-secondary, .modal-overlay');
+        const closeModalElements = modal.querySelectorAll('.modal-close-btn, .modal-btn-secondary');
         closeModalElements.forEach(el => {
             el.addEventListener('click', (e) => {
                 // Asegura que el clic en el contenido no cierre el modal
@@ -185,6 +221,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     modal.classList.remove('active');
                 }
             });
+        });
+
+        // Cerrar al hacer clic fuera del contenido
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        // Cerrar con la tecla Escape
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+            }
         });
     }
 
