@@ -23,29 +23,37 @@ document.addEventListener('DOMContentLoaded', () => {
         const closeBtn = document.querySelector('.close-menu');
         const overlay = document.querySelector('.nav-overlay');
 
-        // Comprobamos si los elementos existen para evitar errores
         if (hamburgerBtn && mobileNav && closeBtn && overlay) {
-            const openMenu = () => {
-                mobileNav.classList.add('is-open');
-                overlay.classList.add('is-open');
-                document.body.classList.add('no-scroll');
+            const setMenuState = (isOpen) => {
+                mobileNav.classList.toggle('is-open', isOpen);
+                overlay.classList.toggle('is-open', isOpen);
+                document.body.classList.toggle('no-scroll', isOpen);
+                hamburgerBtn.classList.toggle('is-active', isOpen);
+                hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                hamburgerBtn.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+                mobileNav.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+                overlay.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
             };
 
-            const closeMenu = () => {
-                mobileNav.classList.remove('is-open');
-                overlay.classList.remove('is-open');
-                document.body.classList.remove('no-scroll');
-            };
+            const closeMenu = () => setMenuState(false);
+            const toggleMenu = () => setMenuState(!mobileNav.classList.contains('is-open'));
 
-            hamburgerBtn.addEventListener('click', openMenu);
+            hamburgerBtn.addEventListener('click', toggleMenu);
             closeBtn.addEventListener('click', closeMenu);
             overlay.addEventListener('click', closeMenu);
 
-            // Cierra el menú al hacer clic en un enlace
             const mobileNavLinks = mobileNav.querySelectorAll('.nav-link');
             mobileNavLinks.forEach(link => {
                 link.addEventListener('click', closeMenu);
             });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && mobileNav.classList.contains('is-open')) {
+                    closeMenu();
+                }
+            });
+
+            setMenuState(false);
         }
     }
 

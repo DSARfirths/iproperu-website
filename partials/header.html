@@ -1,44 +1,68 @@
 <!-- --- HEADER ----->
 <header class="main-header">
-    <nav class="navigation-menu container">
-        <a href="index.html" class="logo-link">
+    <div class="container nav-surface">
+        <a href="index.html" class="logo-link" aria-label="Ir al inicio de iPro Perú">
             <img src="assets/images/logo-iProperu.png" alt="Logo de iPro Perú" class="logo-img">
+            <span class="logo-text">
+                <strong>iPro Perú</strong>
+                <span class="logo-subtitle">Laboratorio y tienda móvil</span>
+            </span>
         </a>
 
-        <ul class="nav-links-desktop">
-            <li><a href="index.html" class="nav-link">Inicio<span class="hover-effect"></span></a></li>
-            <li><a href="servicios.html" class="nav-link">Servicio Técnico<span class="hover-effect"></span></a></li>
-            <li><a href="productos.html" class="nav-link">Productos<span class="hover-effect"></span></a></li>
-            <li><a href="nosotros.html" class="nav-link">Nosotros<span class="hover-effect"></span></a></li>
-        </ul>
+        <nav class="nav-desktop" aria-label="Menú principal">
+            <ul class="nav-links-desktop">
+                <li><a href="index.html" class="nav-link">Inicio</a></li>
+                <li><a href="servicios.html" class="nav-link">Servicio técnico</a></li>
+                <li><a href="productos.html" class="nav-link">Productos</a></li>
+                <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+            </ul>
+        </nav>
 
-        <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Perú,%20quisiera%20cotizar%20una%20reparación."
-            target="_blank" class="main-cta-button desktop-cta">
-            Cotizar Reparación
-        </a>
+        <div class="nav-actions">
+            <a href="tel:+51979012180" class="nav-phone">
+                <i class="fa-solid fa-phone"></i>
+                <span>(+51) 979 012 180</span>
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20agendar%20una%20reparaci%C3%B3n." target="_blank" class="main-cta-button desktop-cta">
+                Agendar reparación
+            </a>
+        </div>
 
-        <button class="hamburger-menu" aria-label="Abrir menú">
-            <i class="fas fa-bars"></i>
+        <button class="hamburger-menu" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-nav">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
         </button>
-    </nav>
+    </div>
 
-    <div class="mobile-nav-container">
+    <div id="mobile-nav" class="mobile-nav-container" aria-hidden="true">
         <div class="mobile-nav-header">
-            <span class="mobile-menu-title">Menú</span>
+            <a href="index.html" class="mobile-logo">
+                <img src="assets/images/logo-iProperu.png" alt="Logo de iPro Perú" class="logo-img">
+                <span>iPro Perú</span>
+            </a>
             <button class="close-menu" aria-label="Cerrar menú">
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        <ul class="nav-links-mobile">
-            <li><a href="index.html" class="nav-link">Inicio</a></li>
-            <li><a href="servicios.html" class="nav-link">Servicio Técnico</a></li>
-            <li><a href="productos.html" class="nav-link">Productos</a></li>
-            <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
-        </ul>
-        <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Perú,%20quisiera%20cotizar%20una%20reparación."
-            target="_blank" class="main-cta-button mobile-cta">
-            Cotizar Reparación
-        </a>
+
+        <nav class="mobile-nav" aria-label="Menú móvil">
+            <ul class="nav-links-mobile">
+                <li><a href="index.html" class="nav-link">Inicio</a></li>
+                <li><a href="servicios.html" class="nav-link">Servicio técnico</a></li>
+                <li><a href="productos.html" class="nav-link">Productos</a></li>
+                <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+            </ul>
+        </nav>
+
+        <div class="mobile-nav-extra">
+            <a href="tel:+51979012180" class="mobile-link">
+                <i class="fa-solid fa-phone"></i> Llamar ahora
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20agendar%20una%20reparaci%C3%B3n." target="_blank" class="main-cta-button mobile-cta">
+                Agendar reparación
+            </a>
+        </div>
     </div>
-    <div class="nav-overlay"></div>
+    <div class="nav-overlay" aria-hidden="true"></div>
 </header>
