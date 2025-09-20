@@ -22,7 +22,15 @@ const deriveCategoriesFromProducts = (products) => {
 };
 
 const CATEGORY_LABEL_OVERRIDES = {
-    iphone: 'iPhone'
+    iphone: 'iPhone',
+    'android-honor': 'Android · HONOR',
+    'android-infinix': 'Android · Infinix',
+    'android-motorola': 'Android · Motorola',
+    'android-nubia': 'Android · Nubia',
+    'android-redmi': 'Android · Redmi',
+    'android-samsung': 'Android · Samsung',
+    'android-zte': 'Android · ZTE',
+    accesorios: 'Accesorios'
 };
 
 const formatCategoryLabel = (category) => {
