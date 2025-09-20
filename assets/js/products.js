@@ -156,10 +156,131 @@ const synchronizeActiveFilter = (filtersContainer) => {
     });
 };
 
-const pauseVideoElement = (video) => {
-    if (video && !video.paused) {
+const loadVideoSource = (video) => {
+    if (!video || !video.dataset || !video.dataset.src) {
+        return;
+    }
+
+    const source = video.dataset.src;
+    if (source) {
+        video.src = source;
+        video.removeAttribute('data-src');
+        video.load();
+    }
+};
+
+const attemptPlay = (video) => {
+    if (!video) {
+        return;
+    }
+
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.then === 'function') {
+        playPromise.catch(() => {});
+    }
+};
+
+const findVideoToggle = (video) => {
+    return video?.closest('.product-slide')?.querySelector('.product-video-toggle') || null;
+};
+
+const updateVideoToggleState = (button, isPlaying) => {
+    if (!button) {
+        return;
+    }
+
+    const playing = Boolean(isPlaying);
+    button.classList.toggle('is-playing', playing);
+    button.setAttribute('aria-pressed', String(playing));
+    button.setAttribute('aria-label', playing ? 'Pausar video del producto' : 'Reproducir video del producto');
+
+    const icon = button.querySelector('i');
+    if (icon) {
+        icon.classList.toggle('fa-play', !playing);
+        icon.classList.toggle('fa-pause', playing);
+    }
+};
+
+const syncVideoToggle = (video) => {
+    const toggleButton = findVideoToggle(video);
+    const isPlaying = Boolean(video) && !video.paused && !video.ended;
+    updateVideoToggleState(toggleButton, isPlaying);
+};
+
+let videoVisibilityObserver = null;
+
+const getVideoVisibilityObserver = () => {
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+        return null;
+    }
+
+    if (!videoVisibilityObserver) {
+        videoVisibilityObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const video = entry.target;
+                const isVisible = entry.isIntersecting;
+
+                if (!video) {
+                    return;
+                }
+
+                video.dataset.isVisible = String(isVisible);
+                const shouldLoop = video.dataset.loop === 'true';
+                video.loop = Boolean(isVisible && shouldLoop);
+
+                if (!isVisible) {
+                    if (!video.paused) {
+                        video.pause();
+                    }
+                    if (shouldLoop) {
+                        try {
+                            video.currentTime = 0;
+                        } catch (error) {
+                            // Some browsers may throw if currentTime is not yet available.
+                        }
+                    }
+                    syncVideoToggle(video);
+                    return;
+                }
+
+                if (video.dataset.userActivated === 'true' && video.dataset.activeSlide === 'true') {
+                    loadVideoSource(video);
+                    attemptPlay(video);
+                }
+            });
+        }, {
+            threshold: 0.55
+        });
+    }
+
+    return videoVisibilityObserver;
+};
+
+const pauseVideoElement = (video, { resetTime = false, disengageObserver = false } = {}) => {
+    if (!video) {
+        return;
+    }
+
+    if (!video.paused) {
         video.pause();
     }
+
+    if (resetTime) {
+        try {
+            video.currentTime = 0;
+        } catch (error) {
+            // Ignore if resetting currentTime is not supported at the moment.
+        }
+    }
+
+    video.dataset.userActivated = 'false';
+    video.loop = false;
+
+    if (disengageObserver && videoVisibilityObserver) {
+        videoVisibilityObserver.unobserve(video);
+    }
+
+    syncVideoToggle(video);
 };
 
 function applyFilters(container) {
@@ -179,8 +300,19 @@ function applyFilters(container) {
         card.style.display = matches ? '' : 'none';
 
         if (!matches) {
-            const video = card.querySelector('.product-video');
-            pauseVideoElement(video);
+            const videos = card.querySelectorAll('.product-video');
+            videos.forEach(video => {
+                pauseVideoElement(video, { resetTime: true, disengageObserver: true });
+            });
+        } else {
+            const activeVideo = card.querySelector('.product-slide.product-slide--active .product-video');
+            if (activeVideo) {
+                activeVideo.dataset.activeSlide = 'true';
+                const observer = getVideoVisibilityObserver();
+                if (observer) {
+                    observer.observe(activeVideo);
+                }
+            }
         }
     });
 }
@@ -221,104 +353,176 @@ function setupFilters(filtersContainer, productsContainer) {
     applyFilters(productsContainer);
 }
 
-function initializeProductMedia(container) {
-    const productCards = Array.from(container.querySelectorAll('.product-card'));
-    if (productCards.length === 0) {
+function initializeProductGalleries(container) {
+    const cards = Array.from(container.querySelectorAll('.product-card'));
+    if (cards.length === 0) {
         return;
     }
 
-    const productVideoItems = productCards
-        .map(card => {
-            const video = card.querySelector('.product-video');
-            const control = card.querySelector('.audio-toggle');
-            return video ? { card, video, control } : null;
-        })
-        .filter(Boolean);
+    const observer = getVideoVisibilityObserver();
 
-    if (productVideoItems.length === 0) {
-        return;
-    }
+    cards.forEach(card => {
+        const slider = card.querySelector('.product-slider');
+        const track = slider?.querySelector('.product-slider__track');
 
-    const attemptPlay = (video) => {
-        const playPromise = video.play();
-        if (playPromise && typeof playPromise.then === 'function') {
-            playPromise.catch(() => {});
+        if (!slider || !track) {
+            return;
         }
-    };
 
-    const updateAudioControl = (item) => {
-        const { card, video, control } = item;
-        const isMuted = video.muted;
-        card.classList.toggle('product-card--with-audio', !isMuted);
-
-        if (control) {
-            control.setAttribute('aria-pressed', String(!isMuted));
-            control.setAttribute('aria-label', isMuted ? 'Activar audio del producto' : 'Desactivar audio del producto');
-
-            const icon = control.querySelector('i');
-            if (icon) {
-                icon.classList.toggle('fa-volume-high', !isMuted);
-                icon.classList.toggle('fa-volume-xmark', isMuted);
-            }
+        const slides = Array.from(track.querySelectorAll('.product-slide'));
+        if (slides.length === 0) {
+            return;
         }
-    };
 
-    const muteOtherVideos = (currentVideo) => {
-        productVideoItems.forEach(item => {
-            if (item.video !== currentVideo && !item.video.muted) {
-                item.video.muted = true;
-                updateAudioControl(item);
+        const prevButton = slider.querySelector('.product-slider__nav--prev');
+        const nextButton = slider.querySelector('.product-slider__nav--next');
+        const thumbnails = Array.from(slider.querySelectorAll('.product-slider__thumbnail'));
+
+        let activeIndex = 0;
+
+        const clampIndex = (index) => Math.max(0, Math.min(index, slides.length - 1));
+
+        const updateActiveSlide = (nextIndex) => {
+            const newIndex = clampIndex(nextIndex);
+            if (newIndex === activeIndex) {
+                return;
             }
-        });
-    };
 
-    productVideoItems.forEach(item => {
-        const { card, video, control } = item;
+            activeIndex = newIndex;
+            track.style.transform = `translateX(-${activeIndex * 100}%)`;
 
-        const handlePlayRequest = () => attemptPlay(video);
-        const handlePauseRequest = () => pauseVideoElement(video);
+            slides.forEach((slide, index) => {
+                const isActive = index === activeIndex;
+                slide.classList.toggle('product-slide--active', isActive);
+                slide.setAttribute('aria-hidden', String(!isActive));
 
-        card.addEventListener('pointerenter', handlePlayRequest);
-        card.addEventListener('pointerleave', handlePauseRequest);
-        card.addEventListener('pointercancel', handlePauseRequest);
-        card.addEventListener('pointerdown', handlePlayRequest);
-        card.addEventListener('pointerup', (event) => {
-            const targetElement = event.target instanceof Element ? event.target : null;
-            const interactedWithAudioToggle = targetElement ? targetElement.closest('.audio-toggle') : null;
-
-            if (event.pointerType === 'touch' && !interactedWithAudioToggle) {
-                handlePauseRequest();
-            }
-        });
-        card.addEventListener('mouseenter', handlePlayRequest);
-        card.addEventListener('mouseleave', handlePauseRequest);
-        card.addEventListener('focusin', handlePlayRequest);
-        card.addEventListener('focusout', handlePauseRequest);
-
-        if (control) {
-            control.addEventListener('click', (event) => {
-                event.stopPropagation();
-
-                if (video.muted) {
-                    muteOtherVideos(video);
-                    video.muted = false;
-                    handlePlayRequest();
-                } else {
-                    video.muted = true;
+                const video = slide.querySelector('.product-video');
+                if (!video) {
+                    return;
                 }
 
-                updateAudioControl(item);
+                video.dataset.activeSlide = String(isActive);
+
+                if (isActive) {
+                    if (observer) {
+                        observer.observe(video);
+                    }
+                } else {
+                    if (observer) {
+                        observer.unobserve(video);
+                    }
+                    pauseVideoElement(video, { resetTime: true });
+                }
+            });
+
+            thumbnails.forEach((thumbnail, index) => {
+                const isActive = index === activeIndex;
+                thumbnail.classList.toggle('is-active', isActive);
+                thumbnail.setAttribute('aria-pressed', String(isActive));
+            });
+
+            if (prevButton) {
+                prevButton.disabled = activeIndex === 0;
+            }
+
+            if (nextButton) {
+                nextButton.disabled = activeIndex === slides.length - 1;
+            }
+        };
+
+        const initializeSlide = (slide, index) => {
+            slide.dataset.slideIndex = String(index);
+            slide.classList.toggle('product-slide--active', index === activeIndex);
+            slide.setAttribute('aria-hidden', String(index !== activeIndex));
+
+            const video = slide.querySelector('.product-video');
+            if (!video) {
+                return;
+            }
+
+            video.dataset.activeSlide = String(index === activeIndex);
+            video.dataset.userActivated = 'false';
+
+            const toggleButton = findVideoToggle(video);
+
+            if (toggleButton) {
+                toggleButton.addEventListener('click', () => {
+                    if (video.paused || video.ended) {
+                        video.dataset.userActivated = 'true';
+                        loadVideoSource(video);
+                        attemptPlay(video);
+                    } else {
+                        video.dataset.userActivated = 'false';
+                        video.pause();
+                    }
+                });
+            }
+
+            video.addEventListener('play', () => {
+                updateVideoToggleState(toggleButton, true);
+            });
+
+            video.addEventListener('pause', () => {
+                updateVideoToggleState(toggleButton, false);
+            });
+
+            video.addEventListener('click', () => {
+                if (video.paused || video.ended) {
+                    video.dataset.userActivated = 'true';
+                    loadVideoSource(video);
+                    attemptPlay(video);
+                } else {
+                    video.dataset.userActivated = 'false';
+                    video.pause();
+                }
+            });
+
+            if (observer && index === activeIndex) {
+                observer.observe(video);
+            } else if (!observer && index === activeIndex && video.dataset.userActivated === 'true') {
+                loadVideoSource(video);
+                attemptPlay(video);
+            }
+
+            syncVideoToggle(video);
+        };
+
+        slides.forEach(initializeSlide);
+
+        if (prevButton) {
+            prevButton.addEventListener('click', () => {
+                updateActiveSlide(activeIndex - 1);
             });
         }
 
-        video.addEventListener('volumechange', () => {
-            updateAudioControl(item);
-            if (!video.muted) {
-                muteOtherVideos(video);
-            }
+        if (nextButton) {
+            nextButton.addEventListener('click', () => {
+                updateActiveSlide(activeIndex + 1);
+            });
+        }
+
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', () => {
+                const index = Number.parseInt(thumbnail.dataset.slideIndex || '0', 10);
+                updateActiveSlide(index);
+            });
         });
 
-        updateAudioControl(item);
+        track.style.transform = `translateX(-${activeIndex * 100}%)`;
+
+        if (prevButton) {
+            prevButton.disabled = activeIndex === 0;
+        }
+
+        if (nextButton) {
+            nextButton.disabled = activeIndex === slides.length - 1;
+        }
+
+        thumbnails.forEach((thumbnail, index) => {
+            const isActive = index === activeIndex;
+            thumbnail.classList.toggle('is-active', isActive);
+            thumbnail.setAttribute('aria-pressed', String(isActive));
+        });
     });
 }
 
@@ -328,29 +532,166 @@ function createProductCard(product) {
     card.dataset.category = product.category;
     card.dataset.brand = product.brand || DEFAULT_FILTER_VALUE;
 
-    const videoSrc = product.videoSrc || '';
-    const posterSrc = product.posterSrc || '';
+    const mediaItems = Array.isArray(product.media) ? product.media : [];
     const whatsappLink = product.whatsappLink || '#';
     const ctaLabel = product.ctaLabel || 'Consultar disponibilidad';
     const specs = product.specs || '';
     const brand = product.brand || '';
 
-    card.innerHTML = `
-        <div class="product-media">
-            <video class="product-video" src="${videoSrc}" poster="${posterSrc}" playsinline muted loop preload="metadata"></video>
-            <button type="button" class="audio-toggle" aria-label="Activar audio del producto" aria-pressed="false">
-                <i class="fa-solid fa-volume-xmark" aria-hidden="true"></i>
-            </button>
-        </div>
-        <div class="product-info">
-            ${brand ? `<span class="product-brand">${brand}</span>` : ''}
-            <h3 class="product-name">${product.name}</h3>
-            <p class="product-spec">${specs}</p>
-            <a href="${whatsappLink}" target="_blank" class="product-cta">
-                <i class="fab fa-whatsapp"></i> ${ctaLabel}
-            </a>
-        </div>
-    `;
+    const mediaContainer = document.createElement('div');
+    mediaContainer.className = 'product-media';
+
+    if (mediaItems.length > 0) {
+        const slider = document.createElement('div');
+        slider.className = 'product-slider';
+
+        const viewport = document.createElement('div');
+        viewport.className = 'product-slider__viewport';
+
+        const track = document.createElement('div');
+        track.className = 'product-slider__track';
+
+        viewport.appendChild(track);
+        slider.appendChild(viewport);
+
+        const shouldRenderNavigation = mediaItems.length > 1;
+        const thumbnailsContainer = shouldRenderNavigation ? document.createElement('div') : null;
+
+        if (thumbnailsContainer) {
+            thumbnailsContainer.className = 'product-slider__thumbnails';
+        }
+
+        mediaItems.forEach((item, index) => {
+            const slide = document.createElement('div');
+            slide.className = 'product-slide';
+            slide.dataset.mediaType = item?.type || 'image';
+
+            if (item?.type === 'video') {
+                const video = document.createElement('video');
+                video.className = 'product-video';
+                video.playsInline = true;
+                video.muted = true;
+                video.preload = 'none';
+                video.setAttribute('webkit-playsinline', 'true');
+
+                if (item?.poster) {
+                    video.poster = item.poster;
+                }
+
+                if (item?.src) {
+                    video.dataset.src = item.src;
+                }
+
+                if (item?.loop) {
+                    video.dataset.loop = 'true';
+                }
+
+                slide.appendChild(video);
+
+                const toggleButton = document.createElement('button');
+                toggleButton.type = 'button';
+                toggleButton.className = 'product-video-toggle';
+                toggleButton.setAttribute('aria-label', 'Reproducir video del producto');
+                toggleButton.setAttribute('aria-pressed', 'false');
+                toggleButton.innerHTML = '<i class="fa-solid fa-play" aria-hidden="true"></i>';
+
+                slide.appendChild(toggleButton);
+            } else {
+                const image = document.createElement('img');
+                image.className = 'product-image';
+                image.loading = 'lazy';
+                image.alt = item?.alt || product.name;
+                image.src = item?.src || '';
+                slide.appendChild(image);
+            }
+
+            track.appendChild(slide);
+
+            if (thumbnailsContainer) {
+                const thumbnailButton = document.createElement('button');
+                thumbnailButton.type = 'button';
+                thumbnailButton.className = 'product-slider__thumbnail';
+                thumbnailButton.dataset.slideIndex = String(index);
+                thumbnailButton.setAttribute('aria-label', `Mostrar vista ${index + 1} de ${product.name}`);
+
+                const thumbSource = item?.thumbnail || item?.poster || item?.src;
+                if (thumbSource) {
+                    const thumbImage = document.createElement('img');
+                    thumbImage.loading = 'lazy';
+                    thumbImage.src = thumbSource;
+                    thumbImage.alt = `Vista ${index + 1} de ${product.name}`;
+                    thumbnailButton.appendChild(thumbImage);
+                }
+
+                if (item?.type === 'video') {
+                    const thumbIcon = document.createElement('span');
+                    thumbIcon.className = 'product-slider__thumbnail-icon';
+                    thumbIcon.innerHTML = '<i class="fa-solid fa-play" aria-hidden="true"></i>';
+                    thumbnailButton.appendChild(thumbIcon);
+                }
+
+                thumbnailsContainer.appendChild(thumbnailButton);
+            }
+        });
+
+        if (shouldRenderNavigation) {
+            const prevButton = document.createElement('button');
+            prevButton.type = 'button';
+            prevButton.className = 'product-slider__nav product-slider__nav--prev';
+            prevButton.setAttribute('aria-label', 'Ver elemento anterior');
+            prevButton.innerHTML = '<i class="fa-solid fa-chevron-left" aria-hidden="true"></i>';
+
+            const nextButton = document.createElement('button');
+            nextButton.type = 'button';
+            nextButton.className = 'product-slider__nav product-slider__nav--next';
+            nextButton.setAttribute('aria-label', 'Ver siguiente elemento');
+            nextButton.innerHTML = '<i class="fa-solid fa-chevron-right" aria-hidden="true"></i>';
+
+            slider.appendChild(prevButton);
+            slider.appendChild(nextButton);
+        }
+
+        if (thumbnailsContainer) {
+            slider.appendChild(thumbnailsContainer);
+        }
+
+        mediaContainer.appendChild(slider);
+    } else {
+        mediaContainer.classList.add('product-media--empty');
+    }
+
+    const info = document.createElement('div');
+    info.className = 'product-info';
+
+    if (brand) {
+        const brandBadge = document.createElement('span');
+        brandBadge.className = 'product-brand';
+        brandBadge.textContent = brand;
+        info.appendChild(brandBadge);
+    }
+
+    const title = document.createElement('h3');
+    title.className = 'product-name';
+    title.textContent = product.name;
+    info.appendChild(title);
+
+    if (specs) {
+        const specsElement = document.createElement('p');
+        specsElement.className = 'product-spec';
+        specsElement.textContent = specs;
+        info.appendChild(specsElement);
+    }
+
+    const cta = document.createElement('a');
+    cta.href = whatsappLink;
+    cta.target = '_blank';
+    cta.className = 'product-cta';
+    cta.innerHTML = `<i class="fab fa-whatsapp"></i> ${ctaLabel}`;
+
+    info.appendChild(cta);
+
+    card.appendChild(mediaContainer);
+    card.appendChild(info);
 
     return card;
 }
@@ -369,7 +710,7 @@ export function renderProducts(products, { container = document.querySelector(PR
     });
 
     container.appendChild(fragment);
-    initializeProductMedia(container);
+    initializeProductGalleries(container);
     applyFilters(container);
 
     container.dispatchEvent(new CustomEvent('products:rendered', { bubbles: true }));
