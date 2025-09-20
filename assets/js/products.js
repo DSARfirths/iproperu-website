@@ -7,49 +7,45 @@ const DEFAULT_FILTER_VALUE = 'all';
 let filtersInitialized = false;
 const filterState = {};
 
-const deriveFilterOptions = (products, key) => {
-    const uniqueValues = [];
-    const seen = new Set();
-
-    products.forEach(product => {
-        const value = product?.[key];
-        if (!value || value === DEFAULT_FILTER_VALUE || seen.has(value)) {
-            return;
-        }
-
-        seen.add(value);
-        uniqueValues.push(value);
-    });
-
-    return [DEFAULT_FILTER_VALUE, ...uniqueValues];
-};
-
-const CATEGORY_LABEL_OVERRIDES = {
-    iphone: 'iPhone',
-    'android-honor': 'Android · HONOR',
-    'android-infinix': 'Android · Infinix',
-    'android-motorola': 'Android · Motorola',
-    'android-nubia': 'Android · Nubia',
-    'android-redmi': 'Android · Redmi',
-    'android-samsung': 'Android · Samsung',
-    'android-zte': 'Android · ZTE',
+const FAMILY_LABEL_OVERRIDES = {
+    telefonos: 'Teléfonos',
     accesorios: 'Accesorios'
 };
 
-const formatCategoryLabel = (category) => {
-    if (category === DEFAULT_FILTER_VALUE) {
-        return 'Todos';
+const PLATFORM_LABEL_OVERRIDES = {
+    iphone: 'iPhone',
+    android: 'Android',
+    accesorios: 'Accesorios'
+};
+
+const toTitleCase = (value = '') => value
+    .split(/[-_\s]+/)
+    .filter(Boolean)
+    .map(segment => segment.charAt(0).toUpperCase() + segment.slice(1))
+    .join(' ');
+
+const formatFamilyLabel = (family) => {
+    if (family === DEFAULT_FILTER_VALUE) {
+        return 'Todas las familias';
     }
 
-    if (CATEGORY_LABEL_OVERRIDES[category]) {
-        return CATEGORY_LABEL_OVERRIDES[category];
+    if (FAMILY_LABEL_OVERRIDES[family]) {
+        return FAMILY_LABEL_OVERRIDES[family];
     }
 
-    return category
-        .split(/[-_\s]+/)
-        .filter(Boolean)
-        .map(segment => segment.charAt(0).toUpperCase() + segment.slice(1))
-        .join(' ');
+    return toTitleCase(family);
+};
+
+const formatPlatformLabel = (platform) => {
+    if (platform === DEFAULT_FILTER_VALUE) {
+        return 'Todos los sistemas';
+    }
+
+    if (PLATFORM_LABEL_OVERRIDES[platform]) {
+        return PLATFORM_LABEL_OVERRIDES[platform];
+    }
+
+    return toTitleCase(platform);
 };
 
 const formatBrandLabel = (brand) => {
@@ -62,18 +58,67 @@ const formatBrandLabel = (brand) => {
 
 const FILTERS_CONFIG = [
     {
-        type: 'category',
-        dataKey: 'category',
-        containerSelector: '.product-filters__row--categories',
-        formatLabel: formatCategoryLabel
+        type: 'family',
+        dataKey: 'family',
+        containerSelector: '.product-filters__row--families',
+        formatLabel: formatFamilyLabel
+    },
+    {
+        type: 'platform',
+        dataKey: 'platform',
+        containerSelector: '.product-filters__row--platforms',
+        formatLabel: formatPlatformLabel,
+        dependsOn: ['family']
     },
     {
         type: 'brand',
         dataKey: 'brand',
         containerSelector: '.product-filters__row--brands',
-        formatLabel: formatBrandLabel
+        formatLabel: formatBrandLabel,
+        dependsOn: ['family', 'platform']
     }
 ];
+
+const FILTER_CONFIG_BY_TYPE = new Map(FILTERS_CONFIG.map(config => [config.type, config]));
+const PRIMARY_FILTER_TYPE = FILTERS_CONFIG[0]?.type || 'family';
+
+const getFilterDataKey = (type) => {
+    const config = FILTER_CONFIG_BY_TYPE.get(type);
+    return config?.dataKey || type;
+};
+
+const deriveFilterOptions = (products, config) => {
+    const { dataKey, dependsOn = [] } = config || {};
+    const uniqueValues = [];
+    const seen = new Set();
+
+    const matchesDependencies = (product) => dependsOn.every((dependencyType) => {
+        const dependencyKey = getFilterDataKey(dependencyType);
+        const activeValue = filterState[dependencyType] ?? DEFAULT_FILTER_VALUE;
+
+        if (!activeValue || activeValue === DEFAULT_FILTER_VALUE) {
+            return true;
+        }
+
+        return product?.[dependencyKey] === activeValue;
+    });
+
+    products.forEach(product => {
+        if (!product || !matchesDependencies(product)) {
+            return;
+        }
+
+        const value = product?.[dataKey];
+        if (!value || value === DEFAULT_FILTER_VALUE || seen.has(value)) {
+            return;
+        }
+
+        seen.add(value);
+        uniqueValues.push(value);
+    });
+
+    return [DEFAULT_FILTER_VALUE, ...uniqueValues];
+};
 
 const FILTER_TYPES = new Set(FILTERS_CONFIG.map(({ type }) => type));
 
@@ -109,15 +154,25 @@ const ensureFilterRow = (filtersContainer, { containerSelector, type }) => {
     return row;
 };
 
-const renderFilterButtons = ({ container, options, activeValue, type, formatLabel }) => {
+const renderFilterButtons = ({ container, options, activeValue, type, formatLabel, disabled = false }) => {
     if (!container) {
         return;
     }
 
     container.innerHTML = '';
 
-    const fragment = document.createDocumentFragment();
+    const isDisabled = Boolean(disabled);
+    container.classList.toggle('product-filters__row--disabled', isDisabled);
+    container.hidden = isDisabled;
 
+    if (isDisabled) {
+        container.setAttribute('aria-hidden', 'true');
+        return;
+    }
+
+    container.removeAttribute('aria-hidden');
+
+    const fragment = document.createDocumentFragment();
     const labelFormatter = typeof formatLabel === 'function' ? formatLabel : (value) => value;
 
     options.forEach(filterValue => {
@@ -145,7 +200,7 @@ const synchronizeActiveFilter = (filtersContainer) => {
 
     const buttons = filtersContainer.querySelectorAll('.filter-btn');
     buttons.forEach(button => {
-        const filterType = button.dataset.filterType || 'category';
+        const filterType = button.dataset.filterType || PRIMARY_FILTER_TYPE;
         const filterValue = button.dataset.filterValue || DEFAULT_FILTER_VALUE;
         const activeValue = filterType && filterType in filterState
             ? filterState[filterType]
@@ -154,6 +209,39 @@ const synchronizeActiveFilter = (filtersContainer) => {
 
         button.classList.toggle('active', isActive);
     });
+};
+
+const renderAllFilters = (filtersContainer, products = productsData) => {
+    if (!filtersContainer) {
+        return;
+    }
+
+    FILTERS_CONFIG.forEach((filterConfig) => {
+        const { type, formatLabel } = filterConfig;
+        const filterRow = ensureFilterRow(filtersContainer, filterConfig);
+        const options = deriveFilterOptions(products, filterConfig);
+        const hasSelectableOptions = options.length > 1;
+
+        const currentValue = filterState[type] ?? DEFAULT_FILTER_VALUE;
+        const nextValue = options.includes(currentValue)
+            ? currentValue
+            : DEFAULT_FILTER_VALUE;
+
+        if (nextValue !== currentValue) {
+            filterState[type] = nextValue;
+        }
+
+        renderFilterButtons({
+            container: filterRow,
+            options,
+            activeValue: nextValue,
+            type,
+            formatLabel,
+            disabled: !hasSelectableOptions
+        });
+    });
+
+    synchronizeActiveFilter(filtersContainer);
 };
 
 const loadVideoSource = (video) => {
@@ -330,7 +418,7 @@ function setupFilters(filtersContainer, productsContainer) {
 
         event.preventDefault();
 
-        const filterType = button.dataset.filterType || 'category';
+        const filterType = button.dataset.filterType || PRIMARY_FILTER_TYPE;
         const nextFilter = button.dataset.filterValue || DEFAULT_FILTER_VALUE;
 
         if (!FILTER_TYPES.has(filterType)) {
@@ -343,13 +431,13 @@ function setupFilters(filtersContainer, productsContainer) {
 
         filterState[filterType] = nextFilter;
 
-        synchronizeActiveFilter(filtersContainer);
+        renderAllFilters(filtersContainer);
 
         applyFilters(productsContainer);
     });
 
     filtersInitialized = true;
-    synchronizeActiveFilter(filtersContainer);
+    renderAllFilters(filtersContainer);
     applyFilters(productsContainer);
 }
 
@@ -529,7 +617,8 @@ function initializeProductGalleries(container) {
 function createProductCard(product) {
     const card = document.createElement('div');
     card.className = 'product-card';
-    card.dataset.category = product.category;
+    card.dataset.family = product.family || DEFAULT_FILTER_VALUE;
+    card.dataset.platform = product.platform || DEFAULT_FILTER_VALUE;
     card.dataset.brand = product.brand || DEFAULT_FILTER_VALUE;
 
     const mediaItems = Array.isArray(product.media) ? product.media : [];
@@ -725,21 +814,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const filtersContainer = document.querySelector(FILTERS_CONTAINER_SELECTOR);
 
     if (filtersContainer) {
-        FILTERS_CONFIG.forEach((filterConfig) => {
-            const { type, dataKey, containerSelector, formatLabel } = filterConfig;
-            const filterOptions = deriveFilterOptions(productsData, dataKey);
-            const filterRow = ensureFilterRow(filtersContainer, filterConfig);
-
-            renderFilterButtons({
-                container: filterRow,
-                options: filterOptions,
-                activeValue: filterState[type],
-                type,
-                formatLabel
-            });
-        });
-
-        synchronizeActiveFilter(filtersContainer);
+        renderAllFilters(filtersContainer, productsData);
     }
 
     renderProducts(productsData, { container: productsContainer });
