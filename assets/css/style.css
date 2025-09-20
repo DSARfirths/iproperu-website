@@ -1440,9 +1440,16 @@ section {
 /* --- PÃGINA DE PRODUCTOS --- */
 .product-filters {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.product-filters__row {
+    display: flex;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 50px;
     flex-wrap: wrap;
 }
 
@@ -1480,6 +1487,20 @@ section {
     transition: transform var(--transition-speed), box-shadow var(--transition-speed);
     display: flex;
     flex-direction: column;
+}
+
+.product-brand {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(92, 73, 255, 0.12);
+    color: var(--color-accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 12px;
 }
 
 .product-card:hover {

@@ -1,6 +1,7 @@
 export const productsData = [
     {
         category: 'iphone',
+        brand: 'Apple',
         name: 'iPhone 15 Pro Max',
         specs: '256GB · Titanio Natural · Incluye AppleCare opcional',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20iPhone%2015%20Pro%20Max.',
@@ -10,6 +11,7 @@ export const productsData = [
     },
     {
         category: 'iphone',
+        brand: 'Apple',
         name: 'iPhone 13',
         specs: '128GB · Colores disponibles · Garantía 12 meses',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20informaci%C3%B3n%20del%20iPhone%2013.',
@@ -19,6 +21,7 @@ export const productsData = [
     },
     {
         category: 'iphone',
+        brand: 'Apple',
         name: 'iPhone 14 Plus (Reestreno)',
         specs: '128GB · Batería extendida · Incluye protector premium',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20reservar%20el%20iPhone%2014%20Plus.',
@@ -28,6 +31,7 @@ export const productsData = [
     },
     {
         category: 'android-honor',
+        brand: 'HONOR',
         name: 'HONOR 200',
         specs: 'Pantalla OLED 120Hz · Snapdragon 7 Gen 3 · Carga rápida 66W',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20HONOR%20200.',
@@ -37,6 +41,7 @@ export const productsData = [
     },
     {
         category: 'android-honor',
+        brand: 'HONOR',
         name: 'HONOR Magic 7 Lite',
         specs: 'Pantalla curva 120Hz · Cámara 108MP · Batería 5300mAh',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20HONOR%20Magic%207%20Lite.',
@@ -46,6 +51,7 @@ export const productsData = [
     },
     {
         category: 'android-honor',
+        brand: 'HONOR',
         name: 'HONOR Play9A',
         specs: 'Audio potente · Modo gaming · Batería 5000mAh',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20HONOR%20Play9A.',
@@ -55,6 +61,7 @@ export const productsData = [
     },
     {
         category: 'android-honor',
+        brand: 'HONOR',
         name: 'HONOR X7c',
         specs: 'Pantalla amplia · Carga rápida 35W · Doble SIM',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20HONOR%20X7c.',
@@ -64,6 +71,7 @@ export const productsData = [
     },
     {
         category: 'android-infinix',
+        brand: 'Infinix',
         name: 'Infinix GT 20 Pro',
         specs: '120Hz AMOLED · Cámaras 108MP · Memoria 256GB',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Infinix%20GT%2020%20Pro.',
@@ -73,6 +81,7 @@ export const productsData = [
     },
     {
         category: 'android-infinix',
+        brand: 'Infinix',
         name: 'Infinix Hot 40 Pro',
         specs: 'Pantalla 6.78" 120Hz · MediaTek G99 · 5000mAh',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Infinix%20Hot%2040%20Pro.',
@@ -82,6 +91,7 @@ export const productsData = [
     },
     {
         category: 'android-infinix',
+        brand: 'Infinix',
         name: 'Infinix Hot 50 Pro+',
         specs: 'Cámara 108MP · 12GB RAM expandible · Carga 45W',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Infinix%20Hot%2050%20Pro%2B.',
@@ -91,6 +101,7 @@ export const productsData = [
     },
     {
         category: 'android-infinix',
+        brand: 'Infinix',
         name: 'Infinix Note 50 Pro',
         specs: 'Pantalla AMOLED · Stylus integrado · Batería 5000mAh',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Infinix%20Note%2050%20Pro.',
@@ -100,6 +111,7 @@ export const productsData = [
     },
     {
         category: 'android-infinix',
+        brand: 'Infinix',
         name: 'Infinix Smart 9',
         specs: 'Pantalla 6.6" · Dual SIM · Batería 5000mAh',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Infinix%20Smart%209.',
@@ -109,6 +121,7 @@ export const productsData = [
     },
     {
         category: 'android-infinix',
+        brand: 'Infinix',
         name: 'Infinix Smart 10',
         specs: 'Pantalla HD+ · Lector de huella · Almacenamiento 128GB',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Infinix%20Smart%2010.',
@@ -118,6 +131,7 @@ export const productsData = [
     },
     {
         category: 'android-motorola',
+        brand: 'Motorola',
         name: 'Moto E 14',
         specs: 'Pantalla 90Hz · Snapdragon 680 · Batería 5000mAh',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Moto%20E%2014.',
@@ -127,6 +141,7 @@ export const productsData = [
     },
     {
         category: 'android-motorola',
+        brand: 'Motorola',
         name: 'Moto G04s',
         specs: 'Diseño repelente al agua · 90Hz · 5000mAh',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Moto%20G04s.',
@@ -136,6 +151,7 @@ export const productsData = [
     },
     {
         category: 'android-motorola',
+        brand: 'Motorola',
         name: 'Moto G05',
         specs: 'Pantalla 6.5" 90Hz · Cámara 50MP · Android 14',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Moto%20G05.',
@@ -145,6 +161,7 @@ export const productsData = [
     },
     {
         category: 'android-motorola',
+        brand: 'Motorola',
         name: 'Moto G15',
         specs: 'Cámara 50MP · 8GB RAM · Carga TurboPower',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Moto%20G15.',
@@ -154,6 +171,7 @@ export const productsData = [
     },
     {
         category: 'android-nubia',
+        brand: 'Nubia',
         name: 'Nubia Neo 03 GT',
         specs: 'Snapdragon gaming · Pantalla 120Hz · Ventilador activo',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Nubia%20Neo%2003%20GT.',
@@ -163,6 +181,7 @@ export const productsData = [
     },
     {
         category: 'android-redmi',
+        brand: 'Redmi',
         name: 'Redmi 13',
         specs: 'Pantalla FHD+ · Cámara 108MP · 256GB de almacenamiento',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Redmi%2013.',
@@ -172,6 +191,7 @@ export const productsData = [
     },
     {
         category: 'android-redmi',
+        brand: 'Redmi',
         name: 'Redmi 13x',
         specs: 'Diseño resistente · 8GB RAM · Carga 33W',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Redmi%2013x.',
@@ -181,6 +201,7 @@ export const productsData = [
     },
     {
         category: 'android-redmi',
+        brand: 'Redmi',
         name: 'Redmi 14C',
         specs: 'Procesador Helio G36 · Batería 5000mAh · MIUI 14',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Redmi%2014C.',
@@ -190,6 +211,7 @@ export const productsData = [
     },
     {
         category: 'android-redmi',
+        brand: 'Redmi',
         name: 'Redmi 15',
         specs: 'Pantalla AMOLED · Carga 90W · MIUI 15',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Redmi%2015.',
@@ -199,6 +221,7 @@ export const productsData = [
     },
     {
         category: 'android-redmi',
+        brand: 'Redmi',
         name: 'Redmi 15C',
         specs: '90Hz AdaptiveSync · MediaTek G85 · 128GB',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Redmi%2015C.',
@@ -208,6 +231,7 @@ export const productsData = [
     },
     {
         category: 'android-redmi',
+        brand: 'Redmi',
         name: 'Redmi A3x',
         specs: 'Pantalla 6.71" · Desbloqueo lateral · Android 14 Go',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Redmi%20A3x.',
@@ -217,6 +241,7 @@ export const productsData = [
     },
     {
         category: 'android-redmi',
+        brand: 'Redmi',
         name: 'Redmi A5',
         specs: 'Pantalla HD+ · Batería 5000mAh · MIUI 14',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Redmi%20A5.',
@@ -226,6 +251,7 @@ export const productsData = [
     },
     {
         category: 'android-redmi',
+        brand: 'Redmi',
         name: 'Redmi Note 13 Pro+ 5G',
         specs: '200MP OIS · Dimensity 7200 Ultra · Pantalla curva 120Hz',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Redmi%20Note%2013%20Pro%2B%205G.',
@@ -235,6 +261,7 @@ export const productsData = [
     },
     {
         category: 'android-redmi',
+        brand: 'Redmi',
         name: 'Redmi Note 14',
         specs: '120Hz AMOLED · Snapdragon 7s Gen 2 · 512GB',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Redmi%20Note%2014.',
@@ -244,6 +271,7 @@ export const productsData = [
     },
     {
         category: 'android-redmi',
+        brand: 'Redmi',
         name: 'Redmi Note 14S',
         specs: 'Pantalla AMOLED · MediaTek G99 Ultra · 256GB',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Redmi%20Note%2014S.',
@@ -253,6 +281,7 @@ export const productsData = [
     },
     {
         category: 'android-samsung',
+        brand: 'Samsung',
         name: 'Samsung Galaxy A16',
         specs: 'Pantalla sAMOLED · 8GB RAM · 128GB',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Samsung%20Galaxy%20A16.',
@@ -262,6 +291,7 @@ export const productsData = [
     },
     {
         category: 'android-samsung',
+        brand: 'Samsung',
         name: 'Samsung Galaxy A26 5G',
         specs: 'Pantalla Super AMOLED · 5G · Batería 5000mAh',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Samsung%20Galaxy%20A26%205G.',
@@ -271,6 +301,7 @@ export const productsData = [
     },
     {
         category: 'android-samsung',
+        brand: 'Samsung',
         name: 'Samsung Galaxy A36 5G',
         specs: 'Pantalla 6.6" 120Hz · IP67 · 256GB',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Samsung%20Galaxy%20A36%205G.',
@@ -280,6 +311,7 @@ export const productsData = [
     },
     {
         category: 'android-samsung',
+        brand: 'Samsung',
         name: 'Samsung Galaxy S24 FE',
         specs: 'Procesador Exynos 2400 · Cámara triple · Ecosistema Galaxy AI',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20Samsung%20Galaxy%20S24%20FE.',
@@ -289,6 +321,7 @@ export const productsData = [
     },
     {
         category: 'android-zte',
+        brand: 'ZTE',
         name: 'ZTE Blade A35 Core',
         specs: 'Pantalla 6.6" HD+ · Android 14 · Doble SIM',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20ZTE%20Blade%20A35%20Core.',
@@ -298,6 +331,7 @@ export const productsData = [
     },
     {
         category: 'android-zte',
+        brand: 'ZTE',
         name: 'ZTE Blade A35e',
         specs: 'Memoria 64GB · 4GB RAM · Desbloqueo facial',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20ZTE%20Blade%20A35e.',
@@ -307,6 +341,7 @@ export const productsData = [
     },
     {
         category: 'android-zte',
+        brand: 'ZTE',
         name: 'ZTE Blade A56 Pro',
         specs: 'Pantalla 6.6" · 4GB RAM + 64GB · Batería 5000mAh',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20ZTE%20Blade%20A56%20Pro.',
@@ -316,6 +351,7 @@ export const productsData = [
     },
     {
         category: 'android-zte',
+        brand: 'ZTE',
         name: 'ZTE Blade V60 Smart',
         specs: 'Cámara triple AI · Memoria 256GB · Carga 33W',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20ZTE%20Blade%20V60%20Smart.',
@@ -325,6 +361,7 @@ export const productsData = [
     },
     {
         category: 'android-zte',
+        brand: 'ZTE',
         name: 'ZTE Blade V70',
         specs: 'Pantalla AMOLED 120Hz · 256GB · 66W',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20el%20ZTE%20Blade%20V70.',
@@ -334,6 +371,7 @@ export const productsData = [
     },
     {
         category: 'accesorios',
+        brand: 'Accesorios',
         name: 'Baterías Voltrax y OEM',
         specs: 'Compatibles con iPhone y Android · Instalación en laboratorio',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20una%20bater%C3%ADa%20Voltrax.',
@@ -343,6 +381,7 @@ export const productsData = [
     },
     {
         category: 'accesorios',
+        brand: 'Accesorios',
         name: 'Cargadores rápidos',
         specs: 'USB-C, MagSafe y adaptadores de alta potencia certificados',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20busco%20cargadores%20r%C3%A1pidos.',
@@ -352,6 +391,7 @@ export const productsData = [
     },
     {
         category: 'accesorios',
+        brand: 'Accesorios',
         name: 'Altavoces edición Transformers',
         specs: 'Luces RGB · Bluetooth · Batería de larga duración',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20los%20altavoces%20tem%C3%A1ticos.',
@@ -361,6 +401,7 @@ export const productsData = [
     },
     {
         category: 'accesorios',
+        brand: 'Accesorios',
         name: 'Audífonos inalámbricos temáticos',
         specs: 'Estuches coleccionables · Cancelación de ruido · Ediciones limitadas',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20quiero%20aud%C3%ADfonos%20tem%C3%A1ticos.',
@@ -370,6 +411,7 @@ export const productsData = [
     },
     {
         category: 'accesorios',
+        brand: 'Accesorios',
         name: 'Adaptadores y hubs',
         specs: 'Soluciones de carga múltiple para hogares, negocios y autos',
         whatsappLink: 'https://api.whatsapp.com/send?phone=51979012180&text=Hola%20iPro%20Per%C3%BA,%20necesito%20adaptadores.',
