@@ -3,7 +3,8 @@ import { productsData } from './products-data.js';
 const PRODUCTS_GRID_SELECTOR = '.products-grid.catalog-grid';
 const FILTERS_CONTAINER_SELECTOR = '.product-filters';
 
-let currentFilter = 'all';
+let currentCategoryFilter = 'all';
+let currentBrandFilter = 'all';
 let filtersInitialized = false;
 
 const deriveCategoriesFromProducts = (products) => {
@@ -19,6 +20,21 @@ const deriveCategoriesFromProducts = (products) => {
     });
 
     return ['all', ...uniqueCategories];
+};
+
+const deriveBrandsFromProducts = (products) => {
+    const uniqueBrands = [];
+    const seen = new Set();
+
+    products.forEach(product => {
+        const brand = product.brand;
+        if (brand && !seen.has(brand)) {
+            seen.add(brand);
+            uniqueBrands.push(brand);
+        }
+    });
+
+    return ['all', ...uniqueBrands];
 };
 
 const CATEGORY_LABEL_OVERRIDES = {
@@ -49,7 +65,15 @@ const formatCategoryLabel = (category) => {
         .join(' ');
 };
 
-const renderFilterButtons = (filtersContainer, categories, activeFilter) => {
+const formatBrandLabel = (brand) => {
+    if (brand === 'all') {
+        return 'Todas las marcas';
+    }
+
+    return brand;
+};
+
+const renderFilterButtons = (filtersContainer, filters, activeFilter, { type = 'category', formatLabel } = {}) => {
     if (!filtersContainer) {
         return;
     }
@@ -58,14 +82,17 @@ const renderFilterButtons = (filtersContainer, categories, activeFilter) => {
 
     const fragment = document.createDocumentFragment();
 
-    categories.forEach(category => {
+    const labelFormatter = typeof formatLabel === 'function' ? formatLabel : (value) => value;
+
+    filters.forEach(filterValue => {
         const button = document.createElement('button');
         button.type = 'button';
         button.className = 'filter-btn';
-        button.dataset.filter = category;
-        button.textContent = formatCategoryLabel(category);
+        button.dataset.filterType = type;
+        button.dataset.filterValue = filterValue;
+        button.textContent = labelFormatter(filterValue);
 
-        if (category === activeFilter) {
+        if (filterValue === activeFilter) {
             button.classList.add('active');
         }
 
@@ -82,7 +109,13 @@ const synchronizeActiveFilter = (filtersContainer) => {
 
     const buttons = filtersContainer.querySelectorAll('.filter-btn');
     buttons.forEach(button => {
-        button.classList.toggle('active', button.dataset.filter === currentFilter);
+        const filterType = button.dataset.filterType || 'category';
+        const filterValue = button.dataset.filterValue || 'all';
+        const isActive = filterType === 'brand'
+            ? currentBrandFilter === filterValue
+            : currentCategoryFilter === filterValue;
+
+        button.classList.toggle('active', isActive);
     });
 };
 
@@ -92,11 +125,13 @@ const pauseVideoElement = (video) => {
     }
 };
 
-function applyFilter(filterValue, container) {
+function applyFilters(container) {
     const productCards = container.querySelectorAll('.product-card');
 
     productCards.forEach(card => {
-        const matches = filterValue === 'all' || card.dataset.category === filterValue;
+        const matchesCategory = currentCategoryFilter === 'all' || card.dataset.category === currentCategoryFilter;
+        const matchesBrand = currentBrandFilter === 'all' || card.dataset.brand === currentBrandFilter;
+        const matches = matchesCategory && matchesBrand;
         card.style.display = matches ? '' : 'none';
 
         if (!matches) {
@@ -119,19 +154,28 @@ function setupFilters(filtersContainer, productsContainer) {
 
         event.preventDefault();
 
-        const nextFilter = button.dataset.filter || 'all';
-        if (currentFilter !== nextFilter) {
-            currentFilter = nextFilter;
+        const filterType = button.dataset.filterType || 'category';
+        const nextFilter = button.dataset.filterValue || 'all';
+
+        if (filterType === 'brand') {
+            if (currentBrandFilter === nextFilter) {
+                return;
+            }
+            currentBrandFilter = nextFilter;
+        } else if (currentCategoryFilter !== nextFilter) {
+            currentCategoryFilter = nextFilter;
+        } else {
+            return;
         }
 
         synchronizeActiveFilter(filtersContainer);
 
-        applyFilter(currentFilter, productsContainer);
+        applyFilters(productsContainer);
     });
 
     filtersInitialized = true;
     synchronizeActiveFilter(filtersContainer);
-    applyFilter(currentFilter, productsContainer);
+    applyFilters(productsContainer);
 }
 
 function initializeProductMedia(container) {
@@ -239,12 +283,14 @@ function createProductCard(product) {
     const card = document.createElement('div');
     card.className = 'product-card';
     card.dataset.category = product.category;
+    card.dataset.brand = product.brand || 'all';
 
     const videoSrc = product.videoSrc || '';
     const posterSrc = product.posterSrc || '';
     const whatsappLink = product.whatsappLink || '#';
     const ctaLabel = product.ctaLabel || 'Consultar disponibilidad';
     const specs = product.specs || '';
+    const brand = product.brand || '';
 
     card.innerHTML = `
         <div class="product-media">
@@ -254,6 +300,7 @@ function createProductCard(product) {
             </button>
         </div>
         <div class="product-info">
+            ${brand ? `<span class="product-brand">${brand}</span>` : ''}
             <h3 class="product-name">${product.name}</h3>
             <p class="product-spec">${specs}</p>
             <a href="${whatsappLink}" target="_blank" class="product-cta">
@@ -280,7 +327,7 @@ export function renderProducts(products, { container = document.querySelector(PR
 
     container.appendChild(fragment);
     initializeProductMedia(container);
-    applyFilter(currentFilter, container);
+    applyFilters(container);
 
     container.dispatchEvent(new CustomEvent('products:rendered', { bubbles: true }));
 }
@@ -295,16 +342,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (filtersContainer) {
         const categories = deriveCategoriesFromProducts(productsData);
-        const hasActiveClass = filtersContainer.querySelector('.filter-btn.active');
+        const brands = deriveBrandsFromProducts(productsData);
 
-        if (hasActiveClass) {
-            const activeFilter = hasActiveClass.dataset.filter;
-            if (activeFilter) {
-                currentFilter = activeFilter;
-            }
+        let categoryFiltersRow = filtersContainer.querySelector('.product-filters__row--categories');
+        if (!categoryFiltersRow) {
+            categoryFiltersRow = document.createElement('div');
+            categoryFiltersRow.className = 'product-filters__row product-filters__row--categories';
+            filtersContainer.appendChild(categoryFiltersRow);
         }
 
-        renderFilterButtons(filtersContainer, categories, currentFilter);
+        let brandFiltersRow = filtersContainer.querySelector('.product-filters__row--brands');
+        if (!brandFiltersRow) {
+            brandFiltersRow = document.createElement('div');
+            brandFiltersRow.className = 'product-filters__row product-filters__row--brands';
+            filtersContainer.appendChild(brandFiltersRow);
+        }
+
+        renderFilterButtons(categoryFiltersRow, categories, currentCategoryFilter, {
+            type: 'category',
+            formatLabel: formatCategoryLabel
+        });
+
+        renderFilterButtons(brandFiltersRow, brands, currentBrandFilter, {
+            type: 'brand',
+            formatLabel: formatBrandLabel
+        });
+
         synchronizeActiveFilter(filtersContainer);
     }
 
