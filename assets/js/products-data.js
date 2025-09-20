@@ -1,6 +1,7 @@
 export const productsData = [
     {
-        category: 'iphone',
+        family: 'telefonos',
+        platform: 'iphone',
         brand: 'Apple',
         name: 'iPhone 15 Pro Max',
         specs: '256GB · Titanio Natural · Incluye AppleCare opcional',
@@ -20,7 +21,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'iphone',
+        family: 'telefonos',
+        platform: 'iphone',
         brand: 'Apple',
         name: 'iPhone 13',
         specs: '128GB · Colores disponibles · Garantía 12 meses',
@@ -40,7 +42,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'iphone',
+        family: 'telefonos',
+        platform: 'iphone',
         brand: 'Apple',
         name: 'iPhone 14 Plus (Reestreno)',
         specs: '128GB · Batería extendida · Incluye protector premium',
@@ -60,7 +63,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-honor',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'HONOR',
         name: 'HONOR 200',
         specs: 'Pantalla OLED 120Hz · Snapdragon 7 Gen 3 · Carga rápida 66W',
@@ -80,7 +84,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-honor',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'HONOR',
         name: 'HONOR Magic 7 Lite',
         specs: 'Pantalla curva 120Hz · Cámara 108MP · Batería 5300mAh',
@@ -100,7 +105,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-honor',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'HONOR',
         name: 'HONOR Play9A',
         specs: 'Audio potente · Modo gaming · Batería 5000mAh',
@@ -120,7 +126,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-honor',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'HONOR',
         name: 'HONOR X7c',
         specs: 'Pantalla amplia · Carga rápida 35W · Doble SIM',
@@ -140,7 +147,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-infinix',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Infinix',
         name: 'Infinix GT 20 Pro',
         specs: '120Hz AMOLED · Cámaras 108MP · Memoria 256GB',
@@ -160,7 +168,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-infinix',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Infinix',
         name: 'Infinix Hot 40 Pro',
         specs: 'Pantalla 6.78" 120Hz · MediaTek G99 · 5000mAh',
@@ -180,7 +189,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-infinix',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Infinix',
         name: 'Infinix Hot 50 Pro+',
         specs: 'Cámara 108MP · 12GB RAM expandible · Carga 45W',
@@ -200,7 +210,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-infinix',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Infinix',
         name: 'Infinix Note 50 Pro',
         specs: 'Pantalla AMOLED · Stylus integrado · Batería 5000mAh',
@@ -220,7 +231,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-infinix',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Infinix',
         name: 'Infinix Smart 9',
         specs: 'Pantalla 6.6" · Dual SIM · Batería 5000mAh',
@@ -240,7 +252,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-infinix',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Infinix',
         name: 'Infinix Smart 10',
         specs: 'Pantalla HD+ · Lector de huella · Almacenamiento 128GB',
@@ -260,7 +273,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-motorola',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Motorola',
         name: 'Moto E 14',
         specs: 'Pantalla 90Hz · Snapdragon 680 · Batería 5000mAh',
@@ -280,7 +294,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-motorola',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Motorola',
         name: 'Moto G04s',
         specs: 'Diseño repelente al agua · 90Hz · 5000mAh',
@@ -300,7 +315,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-motorola',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Motorola',
         name: 'Moto G05',
         specs: 'Pantalla 6.5" 90Hz · Cámara 50MP · Android 14',
@@ -320,7 +336,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-motorola',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Motorola',
         name: 'Moto G15',
         specs: 'Cámara 50MP · 8GB RAM · Carga TurboPower',
@@ -340,7 +357,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-nubia',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Nubia',
         name: 'Nubia Neo 03 GT',
         specs: 'Snapdragon gaming · Pantalla 120Hz · Ventilador activo',
@@ -360,7 +378,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-redmi',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Redmi',
         name: 'Redmi 13',
         specs: 'Pantalla FHD+ · Cámara 108MP · 256GB de almacenamiento',
@@ -380,7 +399,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-redmi',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Redmi',
         name: 'Redmi 13x',
         specs: 'Diseño resistente · 8GB RAM · Carga 33W',
@@ -400,7 +420,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-redmi',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Redmi',
         name: 'Redmi 14C',
         specs: 'Procesador Helio G36 · Batería 5000mAh · MIUI 14',
@@ -420,7 +441,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-redmi',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Redmi',
         name: 'Redmi 15',
         specs: 'Pantalla AMOLED · Carga 90W · MIUI 15',
@@ -440,7 +462,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-redmi',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Redmi',
         name: 'Redmi 15C',
         specs: '90Hz AdaptiveSync · MediaTek G85 · 128GB',
@@ -460,7 +483,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-redmi',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Redmi',
         name: 'Redmi A3x',
         specs: 'Pantalla 6.71" · Desbloqueo lateral · Android 14 Go',
@@ -480,7 +504,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-redmi',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Redmi',
         name: 'Redmi A5',
         specs: 'Pantalla HD+ · Batería 5000mAh · MIUI 14',
@@ -500,7 +525,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-redmi',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Redmi',
         name: 'Redmi Note 13 Pro+ 5G',
         specs: '200MP OIS · Dimensity 7200 Ultra · Pantalla curva 120Hz',
@@ -520,7 +546,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-redmi',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Redmi',
         name: 'Redmi Note 14',
         specs: '120Hz AMOLED · Snapdragon 7s Gen 2 · 512GB',
@@ -540,7 +567,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-redmi',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Redmi',
         name: 'Redmi Note 14S',
         specs: 'Pantalla AMOLED · MediaTek G99 Ultra · 256GB',
@@ -560,7 +588,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-samsung',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Samsung',
         name: 'Samsung Galaxy A16',
         specs: 'Pantalla sAMOLED · 8GB RAM · 128GB',
@@ -580,7 +609,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-samsung',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Samsung',
         name: 'Samsung Galaxy A26 5G',
         specs: 'Pantalla Super AMOLED · 5G · Batería 5000mAh',
@@ -600,7 +630,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-samsung',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Samsung',
         name: 'Samsung Galaxy A36 5G',
         specs: 'Pantalla 6.6" 120Hz · IP67 · 256GB',
@@ -620,7 +651,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-samsung',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'Samsung',
         name: 'Samsung Galaxy S24 FE',
         specs: 'Procesador Exynos 2400 · Cámara triple · Ecosistema Galaxy AI',
@@ -640,7 +672,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-zte',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'ZTE',
         name: 'ZTE Blade A35 Core',
         specs: 'Pantalla 6.6" HD+ · Android 14 · Doble SIM',
@@ -660,7 +693,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-zte',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'ZTE',
         name: 'ZTE Blade A35e',
         specs: 'Memoria 64GB · 4GB RAM · Desbloqueo facial',
@@ -680,7 +714,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-zte',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'ZTE',
         name: 'ZTE Blade A56 Pro',
         specs: 'Pantalla 6.6" · 4GB RAM + 64GB · Batería 5000mAh',
@@ -700,7 +735,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-zte',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'ZTE',
         name: 'ZTE Blade V60 Smart',
         specs: 'Cámara triple AI · Memoria 256GB · Carga 33W',
@@ -720,7 +756,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'android-zte',
+        family: 'telefonos',
+        platform: 'android',
         brand: 'ZTE',
         name: 'ZTE Blade V70',
         specs: 'Pantalla AMOLED 120Hz · 256GB · 66W',
@@ -740,7 +777,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'accesorios',
+        family: 'accesorios',
+        platform: 'accesorios',
         brand: 'Accesorios',
         name: 'Baterías Voltrax y OEM',
         specs: 'Compatibles con iPhone y Android · Instalación en laboratorio',
@@ -760,7 +798,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'accesorios',
+        family: 'accesorios',
+        platform: 'accesorios',
         brand: 'Accesorios',
         name: 'Cargadores rápidos',
         specs: 'USB-C, MagSafe y adaptadores de alta potencia certificados',
@@ -780,7 +819,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'accesorios',
+        family: 'accesorios',
+        platform: 'accesorios',
         brand: 'Accesorios',
         name: 'Altavoces edición Transformers',
         specs: 'Luces RGB · Bluetooth · Batería de larga duración',
@@ -800,7 +840,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'accesorios',
+        family: 'accesorios',
+        platform: 'accesorios',
         brand: 'Accesorios',
         name: 'Audífonos inalámbricos temáticos',
         specs: 'Estuches coleccionables · Cancelación de ruido · Ediciones limitadas',
@@ -820,7 +861,8 @@ export const productsData = [
         ]
     },
     {
-        category: 'accesorios',
+        family: 'accesorios',
+        platform: 'accesorios',
         brand: 'Accesorios',
         name: 'Adaptadores y hubs',
         specs: 'Soluciones de carga múltiple para hogares, negocios y autos',
