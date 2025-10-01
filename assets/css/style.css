@@ -8,7 +8,8 @@
 :root {
     --color-background: #FFFFFF;
     --color-light-gray: #f5f5f7;
-    --color-text-primary: #FFFFFF;
+    --color-text-primary: #1d1d1f;
+    --color-text-white: #FFFFFF;
     --color-text-secondary: #515154;
     --color-accent: #0071e3;
     --color-accent-hover: #0077ed;
@@ -662,7 +663,7 @@ section {
 
 .button-ghost {
     background-color: transparent;
-    color: var(--color-text-primary);
+    color: var(--color-text-white);
 }
 
 .button-ghost:hover {
